@@ -12,13 +12,18 @@ class WebcamDownloader::WebcamArray
   end
 
   def setup
+    load_all_config
+    copy_descs_to_storage # needed for monthly directories
+    create_monthly_directories
   end
 
   # load all config YAML files
-  def load_config
+  def load_all_config
     Dir["config/*.yml"].each do |path|
       load_config_file(path)
     end
+
+    @logger.debug "#{self.class} all config loaded: #{@webcams.size}"
   end
 
   # load one config YAML file and add Webcam object
@@ -27,10 +32,22 @@ class WebcamDownloader::WebcamArray
     data = YAML.load(s) as Array
 
     data.each do |h|
-      @webcams.push WebcamDownloader::Webcam.new(h, self)
+      @webcams.push WebcamDownloader::Webcam.new(h, @logger)
     end
 
-    puts "config loaded #{path}"
+    @logger.debug "#{self.class} config loaded: #{path}"
+  end
+
+  def copy_descs_to_storage
+    @webcams.each do |webcam|
+      @storage.desc_array << webcam.desc
+    end
+
+    @logger.debug "#{self.class} copy_descs_to_storage"
+  end
+
+  def create_monthly_directories
+    @storage.prepare_monthly_directories
   end
 
 end
