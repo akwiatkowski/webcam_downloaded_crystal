@@ -24,4 +24,8 @@ class WebcamDownloader::Downloader
     @storage.setup
     @webcam_array.setup
   end
+
+  def one_loop
+    @webcam_array.make_it_so
+  end
 end

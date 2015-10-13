@@ -38,4 +38,18 @@ class WebcamDownloader::Storage
 
     @logger.debug("#{self.class} prepared monthly directories for #{mp}")
   end
+
+  # paths for webcam
+  def path_temp_for_desc(desc)
+    return File.join("tmp", "tmp_" + desc + Time.now.epoch.to_s + ".jpg.tmp")
+  end
+
+  def path_temp_processed_for_desc(desc)
+    return File.join("tmp", "tmp_" + desc + Time.now.epoch.to_s + "_proc.jpg.tmp")
+  end
+
+  def path_store_for_desc(desc)
+    return File.join("pix", @monthly_prefix, desc, "#{desc}_#{Time.now.epoch}.jpg")
+  end
+
 end

@@ -17,6 +17,14 @@ class WebcamDownloader::WebcamArray
     create_monthly_directories
   end
 
+  def make_it_so
+    create_monthly_directories
+
+    @webcams.each do |webcam|
+      webcam.download
+    end
+  end
+
   # load all config YAML files
   def load_all_config
     Dir["config/*.yml"].each do |path|
@@ -32,7 +40,7 @@ class WebcamDownloader::WebcamArray
     data = YAML.load(s) as Array
 
     data.each do |h|
-      @webcams.push WebcamDownloader::Webcam.new(h, @logger)
+      @webcams.push WebcamDownloader::Webcam.new(h, @logger, @storage, @wget_proxy)
     end
 
     @logger.debug "#{self.class} config loaded: #{path}"
