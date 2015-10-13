@@ -1,6 +1,8 @@
 class WebcamDownloader::Storage
-  def initialize(_logger)
+  def initialize(_logger, _processor)
     @logger = _logger
+    @processor = _processor
+
     @monthly_prefix = ""
 
     @desc_array = [] of String
@@ -9,6 +11,7 @@ class WebcamDownloader::Storage
   end
 
   property :desc_array
+  getter :processor
 
   def setup
     prepare_directories
@@ -52,4 +55,7 @@ class WebcamDownloader::Storage
     return File.join("pix", @monthly_prefix, desc, "#{desc}_#{Time.now.epoch}.jpg")
   end
 
+  def move(from_path, to_path)
+    `mv #{from_path} #{to_path}`
+  end
 end

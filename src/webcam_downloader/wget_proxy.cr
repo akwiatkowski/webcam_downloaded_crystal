@@ -14,10 +14,14 @@ class WebcamDownloader::WgetProxy
     @retries = 3
     @retries_proxy = 1
 
+    @verbose = false
+
     @tmp_file = File.join("tmp", "tmp.tmp")
 
     @logger.debug "#{self.class} initialized"
   end
+
+  property :verbose
 
   AGENTS_LIST = [
     "Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0",
@@ -40,13 +44,19 @@ class WebcamDownloader::WgetProxy
     additional_options = options[:wget_options] if options.has_key?(:wget_options)
 
     agent = AGENTS_LIST[rand(AGENTS_LIST.size)]
-    
+
     timeouts_options = "-t #{@retries} --dns-timeout=#{@dns_timeout} --connect-timeout=#{@connect_timeout} --read-timeout=#{@read_timeout}"
     referer_options = "--referer=\"#{referer}\""
     agent_options = "--user-agent=\"#{agent}\""
     cookies_options = "--load-cookies #{@cookie_path} --keep-session-cookies --save-cookies data/cookies.txt"
 
-    command = "wget #{additional_options} #{timeouts_options} #{referer_options} #{agent_options} #{cookies_options} \"#{url}\" -O#{dest}"
+    if @verbose
+      verbose_options = "--verbose"
+    else
+      verbose_options = "--quiet"
+    end
+
+    command = "wget #{additional_options} #{timeouts_options} #{referer_options} #{agent_options} #{cookies_options} #{verbose_options} \"#{url}\" -O#{dest}"
 
     @logger.debug("#{self.class} wget command - #{command.to_s}")
     `#{command}`

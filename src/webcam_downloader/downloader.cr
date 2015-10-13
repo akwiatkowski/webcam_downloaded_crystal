@@ -6,12 +6,18 @@ class WebcamDownloader::Downloader
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::DEBUG
 
-    @storage = Storage.new(
+
+    @processor = Processor.new(
       @logger
+    )
+    @storage = Storage.new(
+      @logger,
+      @processor
     )
     @wget_proxy = WgetProxy.new(
       @logger
     )
+
 
     @webcam_array = WebcamArray.new(
       @storage,
