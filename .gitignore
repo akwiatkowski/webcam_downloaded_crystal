@@ -3,4 +3,8 @@
 /.crystal/
 /.shards/
 
-
+# project runtime paths
+tmp
+pix
+data
+latest

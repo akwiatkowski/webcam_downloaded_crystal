@@ -1,4 +1,11 @@
 class WebcamDownloader::Webcam
-  def initialize(hash)
+  def initialize(hash, parent)
+    @parent = parent as Downloader
+    #@desc = (hash as Hash(YAML::Type, YAML::Type))[:desc] as String
+  end
+
+  getter :desc
+
+  def download
   end
 end
