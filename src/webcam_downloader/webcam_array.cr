@@ -11,6 +11,8 @@ class WebcamDownloader::WebcamArray
     @logger.debug "#{self.class} initialized"
   end
 
+  getter :webcams
+
   def setup
     load_all_config
     copy_descs_to_storage # needed for monthly directories
@@ -40,7 +42,12 @@ class WebcamDownloader::WebcamArray
     data = YAML.load(s) as Array
 
     data.each do |h|
-      @webcams.push WebcamDownloader::Webcam.new(h, @logger, @storage, @wget_proxy)
+      # check if definition has "desc"
+      hash = h as Hash(YAML::Type, YAML::Type)
+      if hash.has_key?(":desc")
+        webcam = WebcamDownloader::Webcam.new(hash, @logger, @storage, @wget_proxy)
+        @webcams.push(webcam)
+      end
     end
 
     @logger.debug "#{self.class} config loaded: #{path}"

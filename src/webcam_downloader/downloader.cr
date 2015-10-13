@@ -18,11 +18,15 @@ class WebcamDownloader::Downloader
       @logger
     )
 
-
     @webcam_array = WebcamArray.new(
       @storage,
       @wget_proxy,
       @logger
+    )
+
+    @stats_writer = StatsWriter.new(
+      @logger,
+      @webcam_array
     )
   end
 
@@ -33,5 +37,6 @@ class WebcamDownloader::Downloader
 
   def one_loop
     @webcam_array.make_it_so
+    @stats_writer.make_it_so
   end
 end

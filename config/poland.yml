@@ -1,8 +1,53 @@
----
-- :url: http://kamery.topr.pl/stawy2/stawy2.jpg
-  :interval: 180
-  :desc: stawy2
-  :lat: 49.304778
-  :lon: 19.916832
-  :use_in_timelapse: true
-  :group: poland
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_skrzyczne/A-hi.jpg
+  :interval: 240
+  :desc: skrzyczne
+  :lat: 49.684444
+  :lon: 19.030278
+  :use_in_timelapse: false
+
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_szyndzielnia/A-hi.jpg
+  :interval: 240
+  :desc: szyndzielnia
+  :lat: 49.753111
+  :lon: 18.999667
+  :use_in_timelapse: false
+
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_rysianka/A-hi.jpg
+  :interval: 240
+  :desc: rysianka
+  :lat: 49.536111
+  :lon: 19.234444
+  :use_in_timelapse: false
+
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_liwocz/A-hi.jpg
+  :interval: 240
+  :desc: liwocz
+  :lat: 49.813211
+  :lon: 21.351397
+  :use_in_timelapse: false
+
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_widnica/A-hi.jpg
+  :interval: 240
+  :desc: widnica
+  :lat: 50.399167
+  :lon: 20.031389
+  :use_in_timelapse: false
+
+- :resize: true
+  :jpg_quality: 90
+  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_mikolow/A-hi.jpg
+  :interval: 240
+  :desc: mikolow
+  :lat: 50.166667
+  :lon: 18.9
+  :use_in_timelapse: false

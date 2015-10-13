@@ -58,4 +58,13 @@ class WebcamDownloader::Storage
   def move(from_path, to_path)
     `mv #{from_path} #{to_path}`
   end
+
+  def latest_path(desc)
+    return File.join("latest", "pix", "#{desc}.jpg")
+  end
+
+  def latest_link(desc, _path_store)
+    command = "ln -sf \"../../#{_path_store}\" \"#{latest_path(desc)}\""
+    `#{command}`
+  end
 end
