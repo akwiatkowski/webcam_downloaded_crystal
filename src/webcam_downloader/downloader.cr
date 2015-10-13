@@ -22,7 +22,7 @@ class WebcamDownloader::Downloader
     load_config
 
     # prepare dir structure
-    @storage.prepare
+    #@storage.prepare
   end
 
   ####
@@ -47,7 +47,7 @@ class WebcamDownloader::Downloader
   end
 
   def one_loop
-    #@storage.prepare_monthly_directories
+    @storage.prepare_monthly_directories
 
 
 

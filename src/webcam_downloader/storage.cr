@@ -1,5 +1,9 @@
 class WebcamDownloader::Storage
+  @downloader :: Downloader
+  @logger :: Logger
+
   def initialize
+    @monthly_prefix = ""
   end
 
   property :logger, :downloader
@@ -11,7 +15,7 @@ class WebcamDownloader::Storage
   end
 
   def prepare_monthly_directories
-    mp = Helper.monthly_prefix(Time.now)
+    mp = WebcamDownloader::Helper.monthly_prefix(Time.now)
     return if @monthly_prefix == mp
 
     logger.debug("Prepare monthly directories for #{mp}")
