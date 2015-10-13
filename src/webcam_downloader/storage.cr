@@ -1,12 +1,16 @@
 class WebcamDownloader::Storage
-  @downloader :: Downloader
-  @logger :: Logger
-
-  def initialize
+  def initialize(_logger)
+    @logger = _logger
     @monthly_prefix = ""
+
+    @desc_array = [] of String
+
+    @logger.debug "#{self.class} initialized"
   end
 
-  property :logger, :downloader
+  def setup
+    prepare
+  end
 
   def prepare
     %w(tmp data pix latest) + [File.join("latest", "pix")].each do |path|

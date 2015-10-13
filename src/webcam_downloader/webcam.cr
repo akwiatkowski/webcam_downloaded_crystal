@@ -5,7 +5,4 @@ class WebcamDownloader::Webcam
   end
 
   getter :desc
-
-  def download
-  end
 end
