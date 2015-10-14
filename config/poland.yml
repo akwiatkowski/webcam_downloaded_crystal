@@ -64,4 +64,190 @@
   :resize: false
   :use_in_timelapse: false
   :group: poland
-  
+
+- :url: http://www.zakopaneonline.eu/webcam/zakopane.jpg
+  :pre_url: http://www.zol.pl/webcam/
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: zakopane
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam2/zakopane.jpg
+  :pre_url: http://www.zol.pl/webcam/
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: zakopane2
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam3/zakopane.jpg
+  :pre_url: http://www.zol.pl/webcam/
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: zakopane3
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/moko/moko_01.jpg
+  :interval: 240
+  :desc: moko
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/goryczkowa/gorycz.jpg
+  :interval: 210
+  :desc: goryczkowa
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/moko_TPN/moko_02.jpg
+  :interval: 210
+  :desc: moko2
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/stawy1/stawy1.jpg
+  :interval: 180
+  :desc: stawy
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/stawy2/stawy2.jpg
+  :interval: 180
+  :desc: stawy2
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://kamery.topr.pl/gasienicowa/gasie.jpg
+  :interval: 180
+  :desc: gasienicowa
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam6/koscielisko.jpg
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: koscielisko
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam9/krupowki.jpg
+  :referer: http://www.zol.pl/webcam/
+  :interval: 300
+  :desc: krupowki
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam8/zakopianka.jpg
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: zakopianka
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://z-ne.pl/kamery/giewont_zakopane.jpg
+  :interval: 120
+  :desc: giewont_zakopane
+  :resize: true
+  :jpg_quality_offset: -3
+  :lat: 49.304778
+  :lon: 19.916832
+  :use_in_timelapse: true
+
+- :url: http://www.zakopaneonline.eu/webcam7/murzasichle.jpg
+  :referer: http://www.zol.pl/webcam/
+  :interval: 180
+  :desc: tatry_murzasichle
+  :use_in_timelapse: false
+
+- :interval: 200
+  :desc: tatry_chocholowska
+  :url: http://kamery.topr.pl/chocholowska/chocholow.jpg
+  :resize: false
+  :lat: 49.221369
+  :lon: 19.780973
+  :use_in_timelapse: true
+
+
+- :resize: false
+  :url: http://www.niedzica.pl/uploads/webcam/niedzica2.jpg
+  :interval: 150
+  :desc: pieniny_niedzica2_polana_sosny
+  :lat: 50.288333
+  :lon: 18.973611
+  :use_in_timelapse: false
+
+- :url: http://www.pieninyportal.com/images/stories/webcamera/pieninyportal.jpg
+  :interval: 120
+  :desc: trzy_korony
+
+- :url: http://www.niedzica.pl/uploads/webcam/niedzica7000M.jpg
+  :interval: 240
+  :desc: pieniny_niedzica
+  :lat: 49.422778
+  :lon: 20.482778
+  :use_in_timelapse: false
+
+- :url: http://www.ugazdy.pl/kamerka/obrazek.jpg
+  :interval: 180
+  :desc: gorce_u_gazdy
+  :lat: 50.9
+  :lon: 15.333333
+  :use_in_timelapse: false
+
+- :url: http://obsluga-medialna.pl/kamera/czaszyn/index_cz.php
+  :interval: 110
+  :desc: bieszczady_czaszyn
+  :lat: 49.1575
+  :lon: 22.467222
+  :use_in_timelapse: false
+
+- :url: http://ewymiar.pl/czaszyn/jpg/1.jpg
+  :interval: 120
+  :desc: bieszczady_czaszyn2
+  :lat: 49.1575
+  :lon: 22.467222
+  :use_in_timelapse: false
+
+- :url: http://www.flisacy.pl/kamera1/webcam1.jpg
+  :interval: 120
+  :desc: pieniny_fliska
+  :use_in_timelapse: false
+
+- :url: http://www.polskielng.pl/fileadmin/pliki/kamera_plng/limg1.jpg
+  :interval: 180
+  :desc: swinoujscie_terminal_gaz
+  :use_in_timelapse: false
+
+- :url: http://k.nocowanie.pl/ustroniem/kamera1/obraz_aktualny.jpg
+  :interval: 180
+  :desc: ustronie_morskie
+  :use_in_timelapse: false
+
+- :url: http://images.webcams.travel/webcam/1287047915.jpg
+  :interval: 300
+  :desc: bieszczady_przyslup_carynski
+  :lat: 49.1575
+  :lon: 22.467222
+  :use_in_timelapse: false
+
+- :url: http://images.webcams.travel/webcam/1248008562.jpg
+  :interval: 240
+  :desc: bieszczady_lesko_centrum
+  :lat: 49.1575
+  :lon: 22.467222
+  :use_in_timelapse: false
+    
