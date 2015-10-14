@@ -1,0 +1,5 @@
+- :resize: false
+  :url: http://www.kimmirutweather.com/webcam.jpg
+  :interval: 180
+  :desc: canada_kimmirut
+  :use_in_timelapse: false

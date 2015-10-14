@@ -1,0 +1,5 @@
+- :interval: 120
+  :desc: estonia_tartu
+  :url: http://meteo.physic.ut.ee/webcam/praegu/big.jpg
+  :resize: false
+  :use_in_timelapse: false

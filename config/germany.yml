@@ -1,0 +1,57 @@
+- :interval: 120
+  :desc: hahnenkoepfle
+  :url: http://tramino.s3.amazonaws.com/s/das-hoechste/webcams/ifen-hahnenkoepfle.jpg
+
+- :interval: 150
+  :desc: germany_aussichtsteeg
+  :url: http://www.breitenbergbahn.de/fileadmin/webcams/mobotix/steeg.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 150
+  :desc: germany_aggensteinlift
+  :url: http://www.breitenbergbahn.de/fileadmin/webcams/mobotix/aglstrecke.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 220
+  :desc: de_mount2
+  :url: http://cms.zugspitze.de/static/webcams/k04.jpg
+  :lat: 45.866667
+  :lon: 6.883333
+  :use_in_timelapse: true
+
+- :interval: 180
+  :desc: bavaria_bergen
+  :url: http://www.bayernwebcam.de/bilder/bergen.jpg
+
+- :interval: 150
+  :desc: germany_Diedenshausen
+  :url: http://diedenshausen.de/assets/images/webcamddh.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: germany_trianel
+  :url: http://212.37.52.98/record/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+  :resize: true
+
+- :interval: 300
+  :desc: germany_plauen
+  :url: http://webcam-pl.tc-mw.de/cam3/img01.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: germany_walldurn1
+  :url: http://www.wallduern.de/webcam/wallduern.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: germany_walldurn2
+  :url: http://www.wallduern.de/webcam/hauptstr.jpg
+  :resize: false
+  :use_in_timelapse: false

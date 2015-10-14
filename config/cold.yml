@@ -1,0 +1,30 @@
+- :url: http://www.summitcamp.org/static/images/status/view/webcam.jpg
+  :interval: 500
+  :desc: greenland
+
+- :url: http://icons.wunderground.com/webcamramdisk/a/l/alfis/1/current.jpg
+  :interval: 300
+  :desc: greenland_tasiilaq
+
+- :url: http://www.antarcticanz.govt.nz/webcam/webcam32.jpg
+  :interval: 600
+  :desc: antarc_scott
+  :lat: -65.85
+  :lon: 166.766667
+  :use_in_timelapse: true
+
+- :url: http://www.antarcticanz.govt.nz/ahnetcam/netcam.jpg
+  :interval: 150
+  :desc: antarc_arr_h
+
+- :resize: false
+  :url: http://ivs.bkg.bund.de/vlbi/ohiggins/ohig-web1.jpg
+  :interval: 150
+  :desc: antarctic_ohig
+  :use_in_timelapse: false
+
+- :resize: false
+  :url: http://antarctica.martingrund.de/ohig-pingi-z.jpg
+  :interval: 150
+  :desc: antarctic_ohig_ping
+  :use_in_timelapse: false

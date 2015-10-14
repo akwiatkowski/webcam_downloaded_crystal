@@ -1,0 +1,71 @@
+- :interval: 180
+  :desc: austria_aflenz
+  :url: http://www.aflenz-outdoorpark.at/webcam/webcam.jpg
+
+- :interval: 390
+  :resize: true
+  :desc: austria_silvretta1
+  :url: http://www.silvretta-montafon.at/webcam/image1_text.jpg
+
+- :interval: 390
+  :resize: true
+  :desc: austria_silvretta2
+  :url: http://www.silvretta-montafon.at/webcam/image2_text.jpg
+
+- :interval: 180
+  :desc: saalfelden_hotel_Ritzenhof1
+  :url: http://www.ritzenhof.at/webcam/cam1/cam1.jpg
+  :resize: true
+  :use_in_timelapse: false
+
+- :interval: 180
+  :desc: saalfelden_hotel_Ritzenhof2
+  :url: http://www.ritzenhof.at/webcam/cam2/cam2.jpg
+  :resize: true
+  :use_in_timelapse: false
+
+- :interval: 180
+  :desc: austria_gasthof_geierwallihof
+  :url: http://geierwallihof.at/MOBOTIX/test.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 240
+  :desc: austria_tschagguns
+  :url: http://webcams.salmhofer.at/webcam/tschagguns.jpg
+  :resize: false
+  :lat: 47.080008
+  :lon: 9.901684
+  :use_in_timelapse: false
+
+- :interval: 250
+  :desc: austria_schruns_ferienhotel
+  :url: http://www.ferienhotel.at/kamera/kamera/aktuell.jpg
+  :resize: false
+  :lat: 47.385427
+  :lon: 9.90251
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: austria_Kufsteinblick
+  :url: http://www.webcam.kufnet.at/livebild/kufsteinblick/image.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 180
+  :desc: austria_lienz
+  :url: http://www.hochsteinhuette.at/images/stories/webcam/livebild.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: austria_loser3
+  :url: http://www.mentalworks.com/live/loser.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+#- :interval: 300
+#  :desc: austria_Luckneralm
+#  :url: http://www.lucknerhuette.at/webcam/lucknerhuette.jpg
+#  :resize: false
+#  :use_in_timelapse: false

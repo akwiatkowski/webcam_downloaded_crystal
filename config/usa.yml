@@ -1,0 +1,58 @@
+- :url: http://www.mountainwebcams.com/Qx4F8e21/netcam2.jpg
+  :interval: 200
+  :desc: usa_lake_arrowhead
+  :resize: true
+  :jpg_quality_offset: 4
+  :lat: 34.256389
+  :lon: -117.184444
+  :use_in_timelapse: true
+
+- :url: http://www.stevenspass.com/Stevens/SiteAssets/_ftp/webcam/stevenspass.jpg
+  :interval: 300
+  :desc: usa_stevens1
+
+- :url: http://www.nps.gov/webcams-mora/mountain.jpg
+  :interval: 300
+  :desc: usa_paradise_mountain
+
+- :url: http://www.nps.gov/webcams-mora/west.jpg?1802716
+  :interval: 300
+  :desc: usa_paradise_west
+
+- :url: http://www.cfht.hawaii.edu/webcams/c4/c4.jpg
+  :interval: 150
+  :desc: usa_canada_telescope_nnw
+
+- :url: http://www.nps.gov/webcams-yell/mtwashburn.jpg
+  :interval: 450
+  :desc: usa_mnt_washburn
+
+- :url: http://www.avo.alaska.edu/webcam/redoubt.jpg
+  :interval: 300
+  :desc: usa_alaska_redoubt
+
+- :resize: true
+  :url: http://www.jach.hawaii.edu/weather/images/ukirt.jpg
+  :interval: 180
+  :desc: usa_infrared_telescope
+  :resize: true
+  :jpg_quality_offset: -10
+
+- :interval: 300
+  :desc: usa_san_francisco
+  :url: http://wwc.instacam.com/instacamimg/SANFR/SANFR_l.jpg
+  :lat: 37.7793
+  :lon: -122.4192
+  :use_in_timelapse: true
+
+- :resize: false
+  :url: http://feeder.gina.alaska.edu/webcam-uaf-barrow-seaice-images/current/image
+  :interval: 180
+  :desc: usa_barrow
+  :use_in_timelapse: false
+
+- :resize: false
+  :url: http://www.skimarmot.com/webcams/MOBOTIX/upper.jpg
+  :interval: 180
+  :desc: usa_mobotix_upper
+  :use_in_timelapse: false

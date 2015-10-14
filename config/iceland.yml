@@ -1,0 +1,5 @@
+- :resize: false
+  :url: http://helgi.dk/webmyndir/image.jpg
+  :interval: 180
+  :desc: iceland_veidivotn
+  :use_in_timelapse: false

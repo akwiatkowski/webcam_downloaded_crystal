@@ -1,0 +1,17 @@
+- :interval: 300
+  :desc: chamonix_glace
+  :url: http://www.compagniedumontblanc.fr/webcam/CMM1MERDEGLACE.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: chamonix_mont_blanc
+  :url: http://www.webcams-stations.com/webcam/panoramique-massif-du-mont-blanc/vignette.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: chamonix_valley
+  :url: http://www.regione.vda.it/gestione/webcamgallery/showimage.aspx?nomefile=ferret.jpg
+  :resize: false
+  :use_in_timelapse: false

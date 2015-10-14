@@ -1,0 +1,98 @@
+- :url: http://www.monopol-andermatt.ch/cam/webcam.jpg
+  :interval: 180
+  :desc: switz_andermatt
+
+- :url: http://camserver.z-online.ch/picture/ar6o_T141016_175501543.jpg
+  :interval: 180
+  :desc: switz_weishorn
+
+- :url: http://www.appenzell-ai.ch/appenzell_fotoold.jpg
+  :interval: 200
+  :desc: switz_appenzell
+
+- :interval: 150
+  :desc: ch_birkli
+  :url: http://www.birkli.ch/webcam/bildgross/aktuell_gross.jpg
+  :lat: 45.866667
+  :lon: 6.883333
+  :use_in_timelapse: true
+
+- :interval: 160
+  :desc: arolla_collonx
+  :url: http://www.arolla.com/mt-collon/mtcollonx.jpg
+  :resize: true
+  :jpg_quality_offset: -2
+  :lat: 45.866667
+  :lon: 6.883333
+  :use_in_timelapse: true
+
+- :interval: 180
+  :desc: arolla_widex
+  :url: http://www.arolla.com/webcam_kurhaus/widex.jpg
+  :resize: true
+  :jpg_quality_offset: 2
+  :lat: 45.866667
+  :lon: 6.883333
+  :use_in_timelapse: true
+
+
+- :interval: 90
+  :desc: switzerland_costa_borgnome
+  :url: http://www.costa-borgnone.ch/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: switzerland_charmey
+  :url: http://fribourg.cam.stpartner.ch/cam/charmey/camera2/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: switzerland_lauerz
+  :url: http://lauerz.ch.web1.init0hosting.net/webcam/cam_lauerz-hasen.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 90
+  :desc: switzerland_martigny
+  :url: http://213.221.142.195:8888/record/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: switzerland_ronco
+  :url: http://www.webcamticino.ch/vivereblu/gallery/img/webcam/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: switzerland_soglio
+  :url: http://www.webcam.valtline.it/soglio.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+
+- :interval: 90
+  :desc: switzerland_veysonnaz
+  :url: http://www.caboulis.ch/sion.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 90
+  :desc: switzerland_zermatt_kirche
+  :url: http://www.zermatt.ch/html/bergbahnen/webcams/kirche.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 120
+  :desc: switzerland_zermatt_bahnhof
+  :url: http://www.zermatt.ch/html/bergbahnen/webcams/bahnhof.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: switzerland_zermatt_matterhorn
+  :url: http://www.zermatt.ch/html/bergbahnen/webcams/matterhorn2.jpg
+  :resize: false
+  :use_in_timelapse: false

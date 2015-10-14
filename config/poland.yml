@@ -38,15 +38,15 @@
   :use_in_timelapse: false
   :group: poland
 
-- :resize: true
-  :jpg_quality: 90
-  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_widnica/A-hi.jpg
-  :interval: 240
-  :desc: widnica
-  :lat: 50.399167
-  :lon: 20.031389
-  :use_in_timelapse: false
-  :group: poland
+#- :resize: true
+#  :jpg_quality: 90
+#  :url: http://www.dalekieobserwacje.eu/wp-content/uploads/webcam_widnica/A-hi.jpg
+#  :interval: 240
+#  :desc: widnica
+#  :lat: 50.399167
+#  :lon: 20.031389
+#  :use_in_timelapse: false
+#  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -167,11 +167,11 @@
   :lon: 19.916832
   :use_in_timelapse: true
 
-- :url: http://www.zakopaneonline.eu/webcam7/murzasichle.jpg
-  :referer: http://www.zol.pl/webcam/
-  :interval: 180
-  :desc: tatry_murzasichle
-  :use_in_timelapse: false
+#- :url: http://www.zakopaneonline.eu/webcam7/murzasichle.jpg
+#  :referer: http://www.zol.pl/webcam/
+#  :interval: 180
+#  :desc: tatry_murzasichle
+#  :use_in_timelapse: false
 
 - :interval: 200
   :desc: tatry_chocholowska
@@ -208,12 +208,12 @@
   :lon: 15.333333
   :use_in_timelapse: false
 
-- :url: http://obsluga-medialna.pl/kamera/czaszyn/index_cz.php
-  :interval: 110
-  :desc: bieszczady_czaszyn
-  :lat: 49.1575
-  :lon: 22.467222
-  :use_in_timelapse: false
+#- :url: http://obsluga-medialna.pl/kamera/czaszyn/index_cz.php
+#  :interval: 110
+#  :desc: bieszczady_czaszyn
+#  :lat: 49.1575
+#  :lon: 22.467222
+#  :use_in_timelapse: false
 
 - :url: http://ewymiar.pl/czaszyn/jpg/1.jpg
   :interval: 120
@@ -237,12 +237,12 @@
   :desc: ustronie_morskie
   :use_in_timelapse: false
 
-- :url: http://images.webcams.travel/webcam/1287047915.jpg
-  :interval: 300
-  :desc: bieszczady_przyslup_carynski
-  :lat: 49.1575
-  :lon: 22.467222
-  :use_in_timelapse: false
+#- :url: http://images.webcams.travel/webcam/1287047915.jpg
+#  :interval: 300
+#  :desc: bieszczady_przyslup_carynski
+#  :lat: 49.1575
+#  :lon: 22.467222
+#  :use_in_timelapse: false
 
 - :url: http://images.webcams.travel/webcam/1248008562.jpg
   :interval: 240
@@ -250,4 +250,3 @@
   :lat: 49.1575
   :lon: 22.467222
   :use_in_timelapse: false
-    

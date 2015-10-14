@@ -1,0 +1,5 @@
+- :resize: false
+  :url: http://www.hotelarctic.com/files/webcam/webcamshot.jpg
+  :interval: 180
+  :desc: greenland_Ilulissat
+  :use_in_timelapse: false

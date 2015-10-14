@@ -1,0 +1,5 @@
+- :interval: 120
+  :desc: liechte_steg
+  :url: http://video.lkw.li/liveCamSteg/lkw-stausee-steg.jpg
+  :resize: false
+  :use_in_timelapse: false

@@ -1,0 +1,5 @@
+- :interval: 150
+  :desc: mount_everest
+  :url: http://www.evk2cnr.org/WebCams/PyramidOne/current.jpg
+  :resize: false
+  :use_in_timelapse: false

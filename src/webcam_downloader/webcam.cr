@@ -113,6 +113,8 @@ class WebcamDownloader::Webcam
         @storage.latest_link(desc, _path_store)
         # stats
         @stats["download_done"] += 1
+        # mark hash
+        @previous_md5 = @current_md5
 
         @logger.debug("#{log_name} image is different, stored")
       else

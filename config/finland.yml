@@ -1,0 +1,15 @@
+- :interval: 220
+  :desc: finland_koppola
+  :url: http://85.157.217.2/-wvhttp-01-/GetStillImage
+
+- :interval: 120
+  :desc: finland_Kemijarvi
+  :url: http://www.koillislapinsahko.fi/webcam/current.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 100
+  :desc: finland_levi
+  :url: http://213.28.111.31/record/current.jpg
+  :resize: false
+  :use_in_timelapse: false

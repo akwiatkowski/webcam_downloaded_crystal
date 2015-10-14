@@ -1,0 +1,29 @@
+- :resize: false
+  :url: http://www.liveevent.se/webbkamera/tv4/goteborg/tv4_goteborg_1_1280.jpg
+  :interval: 200
+  :desc: sweden_goteborg
+  :resize: true
+  :jpg_quality_offset: -5
+
+- :url: http://www.gehammar.se/not001.jpg
+  :interval: 200
+  :desc: sweden_hjalmo
+
+- :resize: false
+  :jpg_quality_offset: 4
+  :url: http://www.liveevent.se/webbkamera/ca-kalmar/ca_kalmar_1_1280.jpg
+  :interval: 180
+  :desc: sweden_kalmar
+
+- :resize: false
+  :jpg_quality_offset: 4
+  :url: http://dedi68.aname.net/~checkpoi/webcam/unostorn/webcam_6_1280.jpg
+  :interval: 180
+  :desc: sweden_unostorm
+
+- :resize: false
+  :jpg_quality_offset: 4
+  :url: http://87.237.210.145/~checkpoi/webcam/visby_stora_torget/webcam_10_1280.jpg
+  :interval: 120
+  :desc: swedeb_visby
+  :use_in_timelapse: true

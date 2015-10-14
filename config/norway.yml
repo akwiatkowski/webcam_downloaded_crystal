@@ -1,0 +1,45 @@
+- :interval: 300
+  :desc: norway_pl_stac_polar1
+  :url: http://www.hornsund.com/biblioteka/kamera/duze1.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :interval: 300
+  :desc: norway_pl_stac_polar2
+  :url: http://www.hornsund.com/biblioteka/kamera/duze2.jpg
+  :resize: false
+  :use_in_timelapse: false
+
+- :resize: false
+  :url: http://linkativ.com/webcam/eidet000M.jpg
+  :interval: 180
+  :desc: norway_eidet
+  :use_in_timelapse: false
+
+- :url: http://weather.cs.uit.no/wcam0_snapshots/wcam0_latest_medium.jpg
+  :interval: 60
+  :desc: no_tromso_univ
+  :use_in_timelapse: true
+
+- :url: http://fevik.axiscam.net/axis-cgi/jpg/image.cgi?resolution=640x360
+  :interval: 60
+  :desc: norway_fevik
+
+- :url: http://www.alvdalmiv.no/images/stories/webkamera/images/stories/webkamera/steiabilde002.jpg
+  :interval: 120
+  :desc: norway_alvdal
+
+- :url: http://www.amihotel.no/webcamera/broadcast.jpg
+  :interval: 150
+  :desc: norway_tromso3
+
+- :url: http://www.arcticutleie.no/webkamera.jpg
+  :interval: 120
+  :desc: norwa_skjervoy
+  :resize: true
+  :jpg_quality_offset: -5
+  :use_in_timelapse: true
+
+- :interval: 120
+  :desc: norway_kabelvag
+  :url: http://www.promonorge.no/webcam/kabelvag.jpg

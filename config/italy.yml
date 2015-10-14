@@ -1,0 +1,27 @@
+- :interval: 240
+  :desc: cannobio
+  :url: http://www.cannobio.net/resizeimgpiazza.asp?dimensioni=800
+  :use_in_timelapse: true
+
+- :interval: 300
+  :desc: italy_caorle
+  :url: http://webcam.caorle.com/webcam-spiaggia-ponente/current.jpg
+  :use_in_timelapse: true
+  :prior: 0
+
+- :interval: 120
+  :desc: italy_caorle_centro
+  :url: http://webcam.caorle.com/webcam-centro-storico/current.jpg
+  :lat: 41.897676
+  :lon: 12.495164
+  :use_in_timelapse: false
+
+- :interval: 220
+  :desc: italy_lago
+  :url: http://webcam.molveno.it/webcam/current_grande.jpg
+
+- :interval: 300
+  :desc: italy_pfosl
+  :url: http://zeppelinmedia.org/hotelpfoesl/webcam.jpg
+  :resize: false
+  :use_in_timelapse: false
