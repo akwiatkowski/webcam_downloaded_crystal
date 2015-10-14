@@ -6,6 +6,7 @@ describe WebcamDownloader do
     w.webcam_array.pool_size = 4
     w.setup
     w.one_loop
+    w.one_loop
 
     #w.run_loop
   end

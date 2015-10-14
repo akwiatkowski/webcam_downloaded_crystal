@@ -37,7 +37,7 @@ class WebcamDownloader::Webcam
     @previous_md5 = ""
     @current_md5 = ""
 
-    @last_download_at = Time.now - 3600
+    @last_download_at = Time.now - Time::Span.new(1, 0, 0)
     @started_at = Time.now
 
     @index = 0
@@ -62,8 +62,13 @@ class WebcamDownloader::Webcam
   end
 
   def download?
-    return true
-    return (Time.now - @last_download_at) >= self.interval
+    t = @last_download_at.epoch - Time.now.epoch + self.interval
+    if t <= 0
+      return true
+    else
+      @logger.info("#{log_name} need to wait more #{t} seconds")
+      return false
+    end
   end
 
   def download!
@@ -102,22 +107,23 @@ class WebcamDownloader::Webcam
 
       @current_md5 = @storage.processor.md5( _download_path )
       unless @current_md5 == @previous_md5
-        @logger.debug("#{log_name} image is different, stored, size #{Helper.size_to_human( File.size(_path_store) )}")
         # move to
         @storage.move(_download_path, _path_store)
         # create link in latest
         @storage.latest_link(desc, _path_store)
         # stats
         @stats["download_done"] += 1
+
+        @logger.debug("#{log_name} image is different, stored")
       else
-        @logger.debug("#{log_name} image is identical")
+        @logger.info("#{log_name} image is identical")
         # stats
         @stats["download_identical"] += 1
       end
 
       # mark image was downloaded now
       @last_download_at = Time.now
-      @logger.debug("#{log_name} image is finished")
+      @logger.info("#{log_name} image is finished, size #{Helper.size_to_human( File.size(_path_store) )}")
     end
 
   end

@@ -6,6 +6,7 @@
   :lat: 49.684444
   :lon: 19.030278
   :use_in_timelapse: false
+  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -15,6 +16,7 @@
   :lat: 49.753111
   :lon: 18.999667
   :use_in_timelapse: false
+  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -24,6 +26,7 @@
   :lat: 49.536111
   :lon: 19.234444
   :use_in_timelapse: false
+  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -33,6 +36,7 @@
   :lat: 49.813211
   :lon: 21.351397
   :use_in_timelapse: false
+  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -42,6 +46,7 @@
   :lat: 50.399167
   :lon: 20.031389
   :use_in_timelapse: false
+  :group: poland
 
 - :resize: true
   :jpg_quality: 90
@@ -51,3 +56,12 @@
   :lat: 50.166667
   :lon: 18.9
   :use_in_timelapse: false
+  :group: poland
+
+- :interval: 150
+  :desc: cedry_wielkie_marina1
+  :url: http://79.190.93.34:81/cgi-bin/encoder?USER=www&PWD=www&SNAPSHOT
+  :resize: false
+  :use_in_timelapse: false
+  :group: poland
+  
