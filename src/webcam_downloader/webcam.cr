@@ -84,7 +84,7 @@ class WebcamDownloader::Webcam
 
     if @storage.processor.is_valid_image?( _download_temp_path )
       # image was downloaded
-      @logger.info("#{log_name} image downloaded")
+      @logger.info("#{log_name} image downloaded, size #{Helper.size_to_human( File.size(_download_temp_path) )}")
       @stats["download_total_size_unprocessed"] += File.size( _download_temp_path )
 
       if resize
@@ -102,7 +102,7 @@ class WebcamDownloader::Webcam
 
       @current_md5 = @storage.processor.md5( _download_path )
       unless @current_md5 == @previous_md5
-        @logger.debug("#{log_name} image is different")
+        @logger.debug("#{log_name} image is different, stored, size #{Helper.size_to_human( File.size(_path_store) )}")
         # move to
         @storage.move(_download_path, _path_store)
         # create link in latest
@@ -117,7 +117,7 @@ class WebcamDownloader::Webcam
 
       # mark image was downloaded now
       @last_download_at = Time.now
-      @logger.debug("#{log_name} image is stored")
+      @logger.debug("#{log_name} image is finished")
     end
 
   end

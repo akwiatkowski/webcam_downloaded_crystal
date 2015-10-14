@@ -5,6 +5,7 @@ class WebcamDownloader::Downloader
   def initialize
     @logger = Logger.new(STDOUT)
     @logger.level = Logger::DEBUG
+    @logger.level = Logger::INFO
     @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
       io << severity[0] << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
       io << severity.rjust(5) << ": " << message

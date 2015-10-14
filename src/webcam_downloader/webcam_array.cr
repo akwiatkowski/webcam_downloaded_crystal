@@ -13,7 +13,7 @@ class WebcamDownloader::WebcamArray
 
     @last_index = 0
 
-    @logger.debug "#{self.class} initialized"
+    @logger.debug "Array initialized"
   end
 
   getter :webcams
@@ -43,12 +43,13 @@ class WebcamDownloader::WebcamArray
         # pool filles, wait for finish
         while [true] != pool.map{|f| f.completed? as Bool }.uniq
           # some were not finished
-          @logger.debug("#{self.class} waiting for pool download")
+          waiting_for_count = pool.map{|f| f.running? as Bool }.select{|r| r}.size
+          @logger.debug("Array is waiting for #{waiting_for_count} webcams")
           sleep 1
         end
         # clear pool
         pool = [] of Concurrent::Future(Webcam)
-        @logger.debug("#{self.class} pool is clear")
+        @logger.info("Array: current pool is clear")
       end
     end
 
@@ -62,7 +63,7 @@ class WebcamDownloader::WebcamArray
       load_config_file(path)
     end
 
-    @logger.debug "#{self.class} all config loaded: #{@webcams.size}"
+    @logger.debug "Array all config loaded - #{@webcams.size} webcams"
   end
 
   # load one config YAML file and add Webcam object
@@ -81,7 +82,7 @@ class WebcamDownloader::WebcamArray
       end
     end
 
-    @logger.debug "#{self.class} config loaded: #{path}"
+    @logger.debug "Array config load: #{path}"
   end
 
   def copy_descs_to_storage
@@ -89,7 +90,7 @@ class WebcamDownloader::WebcamArray
       @storage.desc_array << webcam.desc
     end
 
-    @logger.debug "#{self.class} copy_descs_to_storage"
+    # @logger.debug "#{self.class} copy_descs_to_storage"
   end
 
   def create_monthly_directories

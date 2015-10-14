@@ -18,5 +18,6 @@ class WebcamDownloader::StatsWriter
     end
 
     File.write(@path, result)
+    @logger.debug("Stats JSON saved")
   end
 end

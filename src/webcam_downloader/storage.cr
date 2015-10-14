@@ -7,7 +7,7 @@ class WebcamDownloader::Storage
 
     @desc_array = [] of String
 
-    @logger.debug "#{self.class} initialized"
+    @logger.debug "Storage initialized"
   end
 
   property :desc_array
@@ -39,7 +39,7 @@ class WebcamDownloader::Storage
 
     @monthly_prefix = mp
 
-    @logger.debug("#{self.class} prepared monthly directories for #{mp}")
+    @logger.debug("Storage prepared monthly directories for #{mp}")
   end
 
   # paths for webcam
