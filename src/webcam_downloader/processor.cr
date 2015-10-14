@@ -7,7 +7,7 @@ class WebcamDownloader::Processor
     @resolution = "1920x1080"
     @jpeg_quality = 84 # not used
 
-    @logger.debug "#{self.class} initialized"
+    @logger.debug "Processor initialized"
   end
 
   def is_valid_image?(path)
@@ -16,7 +16,6 @@ class WebcamDownloader::Processor
 
   def resize(from_path, to_path, jpeg_quality)
     command = "convert \"#{from_path}\" -resize '#{@resolution}>' -quality #{jpeg_quality}% \"#{to_path}\""
-    #command = "cp #{from_path} #{to_path}"
     `#{command}`
   end
 

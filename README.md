@@ -7,6 +7,12 @@ Crystal language implementation of [webcam_downloader](https://github.com/akwiat
 
 TODO: Write installation instructions here
 
+## Dependencies
+
+It require:
+
+* **wget**
+* **convert** - Image Magick 
 
 ## Usage
 

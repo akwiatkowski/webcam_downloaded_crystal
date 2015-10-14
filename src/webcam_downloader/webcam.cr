@@ -31,20 +31,30 @@ class WebcamDownloader::Webcam
     @stats["time_process_sum"] = 0.0
     @stats["time_process_count"] = 0_u64
 
+    @stats["download_total_size_stored"] = 0_u64
+    @stats["download_total_size_unprocessed"] = 0_u64
 
     @previous_md5 = ""
     @current_md5 = ""
 
     @last_download_at = Time.now - 3600
+    @started_at = Time.now
 
-    @logger.debug "#{self.class} initialized: #{@desc}"
+    @index = 0
+
+    @logger.debug "#{log_name} initialized"
   end
 
   # start of getters
-  getter :desc, :resize, :interval, :group, :last_download_at
+  getter :desc, :resize, :interval, :group, :last_download_at, :started_at
+  property :index
 
   def url
     @hash[":url"]
+  end
+
+  def log_name
+    "#{index} - #{desc}"
   end
 
   def download
@@ -74,7 +84,9 @@ class WebcamDownloader::Webcam
 
     if @storage.processor.is_valid_image?( _download_temp_path )
       # image was downloaded
-      @logger.info("#{self.class} image downloaded: #{self.desc}")
+      @logger.info("#{log_name} image downloaded")
+      @stats["download_total_size_unprocessed"] += File.size( _download_temp_path )
+
       if resize
         t = Time.now
         @storage.processor.resize( _download_temp_path, _download_temp_process_path, @jpeg_quality )
@@ -82,13 +94,15 @@ class WebcamDownloader::Webcam
         @stats["time_process_sum"] += download_time.to_f
         @stats["time_process_count"] += 1
 
-        @logger.info("#{self.class} image processed: #{self.desc}")
+        @logger.info("#{log_name} image processed")
         _download_path = _download_temp_process_path
       end
 
+      @stats["download_total_size_stored"] += File.size( _download_path )
+
       @current_md5 = @storage.processor.md5( _download_path )
       unless @current_md5 == @previous_md5
-        @logger.info("#{self.class} image is different: #{self.desc}")
+        @logger.debug("#{log_name} image is different")
         # move to
         @storage.move(_download_path, _path_store)
         # create link in latest
@@ -96,12 +110,14 @@ class WebcamDownloader::Webcam
         # stats
         @stats["download_done"] += 1
       else
+        @logger.debug("#{log_name} image is identical")
         # stats
         @stats["download_identical"] += 1
       end
 
       # mark image was downloaded now
       @last_download_at = Time.now
+      @logger.debug("#{log_name} image is stored")
     end
 
   end
@@ -112,6 +128,7 @@ class WebcamDownloader::Webcam
       "interval" => interval,
       "group" => group,
       "last_download_at" => last_download_at.epoch,
+      "started_at" => started_at.epoch,
       "stats" => @stats
     }
   end

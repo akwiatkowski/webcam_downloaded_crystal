@@ -1,17 +1,23 @@
 require "logger"
 
 class WebcamDownloader::WebcamArray
-  def initialize(_storage, _wget_proxy, _logger)
+  def initialize(_storage, _wget_proxy, _logger, _options = {} of String => (UInt32 | Float64) )
     @storage = _storage
     @wget_proxy = _wget_proxy
     @logger = _logger
 
     @webcams = [] of WebcamDownloader::Webcam
 
+    @pool_size = 3
+    @pool_size = _options[":pool_size"].to_s.to_u32 if _options.has_key?(":pool_size")
+
+    @last_index = 0
+
     @logger.debug "#{self.class} initialized"
   end
 
   getter :webcams
+  property :pool_size
 
   def setup
     load_all_config
@@ -22,10 +28,33 @@ class WebcamDownloader::WebcamArray
   def make_it_so
     create_monthly_directories
 
-    @webcams.each do |webcam|
-      webcam.download
+
+    pool = [] of Concurrent::Future(Webcam)
+    @webcams.each_with_index do |webcam, index|
+      if pool.size < @pool_size
+        # pool not filles
+        pool << future do
+          webcam.download
+          webcam
+        end
+      end
+
+      if pool.size == @pool_size || @webcams.last == webcam
+        # pool filles, wait for finish
+        while [true] != pool.map{|f| f.completed? as Bool }.uniq
+          # some were not finished
+          @logger.debug("#{self.class} waiting for pool download")
+          sleep 1
+        end
+        # clear pool
+        pool = [] of Concurrent::Future(Webcam)
+        @logger.debug("#{self.class} pool is clear")
+      end
     end
+
   end
+
+
 
   # load all config YAML files
   def load_all_config
@@ -46,6 +75,8 @@ class WebcamDownloader::WebcamArray
       hash = h as Hash(YAML::Type, YAML::Type)
       if hash.has_key?(":desc")
         webcam = WebcamDownloader::Webcam.new(hash, @logger, @storage, @wget_proxy)
+        webcam.index = @last_index
+        @last_index += 1
         @webcams.push(webcam)
       end
     end
