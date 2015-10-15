@@ -17,7 +17,7 @@ It require:
 ## Usage
 
 ```
-crystal build src/start.cr --release
+crystal build src/start.cr --release -o webcam_downloader
 ```
 
 TODO: Write usage instructions here
