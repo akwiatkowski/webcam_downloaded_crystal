@@ -1,0 +1,30 @@
+body {
+  margin-left: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.webcam {
+  border-top: 1px dotted gray;
+}
+
+.webcam .webcam-image {
+  min-width: 50px;
+  min-height: 50px;
+
+  max-height: 800px;
+  max-width: 800px;
+
+  border: 1px dotted gray;
+}
+
+.webcam .webcam-stats-table {
+  font-size: 80%;
+}
+
+.webcam .webcam-stats-table td, th {
+  border-top: 1px dotted gray;
+  border-right: 1px dotted gray;
+}

@@ -18,7 +18,7 @@ class WebcamDownloader::Storage
   end
 
   def prepare_directories
-    %w(tmp data pix latest) + [File.join("latest", "pix")].each do |path|
+    %w(tmp data pix www) + [File.join("www", "pix")].each do |path|
       Dir.mkdir_p(path) unless Dir.exists?(path)
     end
   end
@@ -60,7 +60,7 @@ class WebcamDownloader::Storage
   end
 
   def latest_path(desc)
-    return File.join("latest", "pix", "#{desc}.jpg")
+    return File.join("www", "pix", "#{desc}.jpg")
   end
 
   def latest_link(desc, _path_store)
