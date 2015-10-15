@@ -126,7 +126,7 @@ class WebcamsList extends React.Component {
     return (
       <div className="webcam-list">
         <div className="webcam-control">
-          <a href="#" onClick={(e) => this.reloadLocal()}>Local</a>
+          <a href="#" onClick={(e) => this.reloadLocal()}>Local</a> |
           <a href="#" onClick={(e) => this.reloadRemote()}>Remote</a>
         </div>
         {webcamNodes}

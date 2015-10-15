@@ -5,7 +5,7 @@ class WebcamDownloader::StatsWriter
     @logger = _logger
     @webcam_array = _webcam_array
 
-    @path = File.join("latest", "data.json")
+    @path = File.join("www", "data.json")
   end
 
   def make_it_so
