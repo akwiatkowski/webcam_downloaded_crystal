@@ -12,11 +12,13 @@ TODO: Write installation instructions here
 It require:
 
 * **wget**
-* **convert** - Image Magick 
+* **convert** - Image Magick
 
 ## Usage
 
-
+```
+crystal build src/start.cr --release
+```
 
 TODO: Write usage instructions here
 

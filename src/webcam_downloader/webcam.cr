@@ -132,7 +132,9 @@ class WebcamDownloader::Webcam
 
   def json_data
     return {
+      "index" => index,
       "desc" => desc,
+      "url" => url,
       "interval" => interval,
       "group" => group,
       "last_download_at" => last_download_at.epoch,
