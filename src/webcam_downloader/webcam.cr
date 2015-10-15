@@ -53,6 +53,8 @@ class WebcamDownloader::Webcam
     _url = nil
     _url = @hash[":url"] if @hash.has_key?(":url")
     _url = generate_url if @hash.has_key?(":url_schema")
+
+    return _url
   end
 
   def generate_url(time = nil)
