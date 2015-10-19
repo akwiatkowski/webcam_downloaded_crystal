@@ -7,6 +7,6 @@ describe WebcamDownloader do
     w.setup
     w.one_loop
 
-    #w.run_loop
+    # w.run_loop
   end
 end

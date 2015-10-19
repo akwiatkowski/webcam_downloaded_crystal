@@ -1,7 +1,7 @@
 require "logger"
 
 class WebcamDownloader::WebcamArray
-  def initialize(_storage, _wget_proxy, _logger, _options = {} of String => (UInt32 | Float64) )
+  def initialize(_storage, _wget_proxy, _logger, _options = {} of String => (UInt32 | Float64))
     @storage = _storage
     @wget_proxy = _wget_proxy
     @logger = _logger
@@ -28,7 +28,6 @@ class WebcamDownloader::WebcamArray
   def make_it_so
     create_monthly_directories
 
-
     pool = [] of Concurrent::Future(Webcam)
     @webcams.each_with_index do |webcam, index|
       if pool.size < @pool_size
@@ -41,9 +40,9 @@ class WebcamDownloader::WebcamArray
 
       if pool.size == @pool_size || @webcams.last == webcam
         # pool filles, wait for finish
-        while [true] != pool.map{|f| f.completed? as Bool }.uniq
+        while [true] != pool.map { |f| f.completed? as Bool }.uniq
           # some were not finished
-          waiting_for_count = pool.map{|f| f.running? as Bool }.select{|r| r}.size
+          waiting_for_count = pool.map { |f| f.running? as Bool }.select { |r| r }.size
           @logger.debug("Array is waiting for #{waiting_for_count} webcams")
           sleep 1
         end
@@ -52,10 +51,7 @@ class WebcamDownloader::WebcamArray
         @logger.info("Array: current pool is clear")
       end
     end
-
   end
-
-
 
   # load all config YAML files
   def load_all_config
@@ -96,5 +92,4 @@ class WebcamDownloader::WebcamArray
   def create_monthly_directories
     @storage.prepare_monthly_directories
   end
-
 end

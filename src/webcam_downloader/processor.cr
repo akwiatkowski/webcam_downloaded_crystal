@@ -11,7 +11,7 @@ class WebcamDownloader::Processor
   end
 
   def is_valid_image?(path)
-    return ( File.exists?(path) && File.size(path) > 0 )
+    return (File.exists?(path) && File.size(path) > 0)
   end
 
   def resize(from_path, to_path, jpeg_quality)
@@ -21,6 +21,6 @@ class WebcamDownloader::Processor
 
   def md5(path)
     return "" unless File.exists?(path)
-    return Crypto::MD5.hex_digest( File.read(path) )
+    return Crypto::MD5.hex_digest(File.read(path))
   end
 end
