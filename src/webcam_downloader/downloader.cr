@@ -32,6 +32,8 @@ class WebcamDownloader::Downloader
                       @logger,
                       @webcam_array
                     )
+
+    @storage.setup                
   end
 
   getter :webcam_array, :logger, :storage, :wget_proxy
