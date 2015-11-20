@@ -44,11 +44,11 @@ class WebcamDownloader::Storage
 
   # paths for webcam
   def path_temp_for_desc(desc)
-    return File.join("tmp", "tmp_" + desc + Time.now.epoch.to_s + ".jpg.tmp")
+    return File.join("tmp", "tmp_" + desc + ".jpg.tmp")
   end
 
   def path_temp_processed_for_desc(desc)
-    return File.join("tmp", "tmp_" + desc + Time.now.epoch.to_s + "_proc.jpg.tmp")
+    return File.join("tmp", "tmp_" + desc + "_proc.jpg.tmp")
   end
 
   def path_store_for_desc(desc)
