@@ -29,6 +29,8 @@ class WebcamDownloader::ArchiveDownloader
     @name = ""
 
     @tmp_storage_path = ""
+    @last_time_string = ""
+    @last_time = Time.now
 
     @sleep_between_lists = 2
     @sleep_between_image_download = 3
@@ -73,7 +75,7 @@ class WebcamDownloader::ArchiveDownloader
     return a.reverse
   end
 
-  def download_image(time_string)
+  def convert_time_string_to_time(time_string)
     time_split = time_string.split("/")
     time = Time.new(
       time_split[0].to_i,
@@ -82,6 +84,11 @@ class WebcamDownloader::ArchiveDownloader
       time_split[3][0..1].to_i,
       time_split[3][2..3].to_i
     )
+    return time
+  end
+
+  def download_image(time_string)
+    time = convert_time_string_to_time(time_string)
 
     store_path = @storage.path_store_for_archived_name(@name, time)
     # if exists no download
@@ -121,7 +128,6 @@ class WebcamDownloader::ArchiveDownloader
     list.each do |time_string|
       download_image(time_string)
     end
-    # TODO store some info
   end
 
   def state_path
@@ -144,28 +150,27 @@ class WebcamDownloader::ArchiveDownloader
 
     @tmp_storage_path = @storage.path_temp_for_desc("archive_#{@name}")
 
-    time_string = load_last_time_string
+    @last_time_string = load_last_time_string
 
     # get from last
-    list = get_image_list(time_string)
+    list = get_image_list(@last_time_string)
     download_images_for_list(list)
 
     sleep @sleep_between_lists
 
-    last_time_string = ""
-    last_time_string = list.last if list.size > 0
+    @last_time_string = ""
+    @last_time_string = list.last if list.size > 0
 
-    while last_time_string != ""
+    while @last_time_string != ""
       @logger.info "Success #{@success_count}, already #{@already_count}, failed #{@failed_count}"
       @logger.info "Total size #{@total_size / (1024 ** 2)} MB"
 
-      list = get_image_list(time_string = "")
+      list = get_image_list(@last_time_string)
       download_images_for_list(list)
 
-      last_time_string = ""
       if list.size > 0
-        last_time_string = list.last
-        store_last_time_string(list.last)
+        @last_time_string = list.last
+        store_last_time_string(@last_time_string)
       end
 
       sleep @sleep_between_lists
