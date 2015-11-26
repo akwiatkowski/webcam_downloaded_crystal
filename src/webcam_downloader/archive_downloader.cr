@@ -33,6 +33,11 @@ class WebcamDownloader::ArchiveDownloader
     @sleep_between_lists = 2
     @sleep_between_image_download = 3
 
+    @already_count = 0
+    @failed_count = 0
+    @success_count = 0
+    @total_size = 0
+
     @format = "hd"
   end
 
@@ -80,7 +85,10 @@ class WebcamDownloader::ArchiveDownloader
 
     store_path = @storage.path_store_for_archived_name(@name, time)
     # if exists no download
-    return false if File.exists?(store_path)
+    if File.exists?(store_path)
+      @already_count += 1
+      return false
+    end
     # create path
     store_dir_path = File.dirname(store_path)
     Dir.mkdir_p(store_dir_path) unless Dir.exists?(store_dir_path)
@@ -89,12 +97,20 @@ class WebcamDownloader::ArchiveDownloader
     @wget_proxy.download_url(u, store_path)
 
     if File.exists?(store_path)
-      @logger.info "Image downloaded '#{time_string}', size #{File.size(store_path)}"
-      File.delete(store_path) if File.size(store_path) == 0
+      size = File.size(store_path)
+      @logger.info "Image downloaded '#{time_string}', size #{size}"
+      if size == 0
+        @failed_count += 1
+        File.delete(store_path)
+      else
+        @success_count += 1
+        @total_size += size
+      end
 
       sleep @sleep_between_image_download
       return true
     else
+      @failed_count += 1
       sleep @sleep_between_image_download
       return false
     end
@@ -108,14 +124,30 @@ class WebcamDownloader::ArchiveDownloader
     # TODO store some info
   end
 
+  def state_path
+    File.join("data", "archived_#{@name}")
+  end
+
+  def store_last_time_string(time_string)
+    f = File.new(state_path, "w")
+    f.puts time_string
+    f.close
+  end
+
+  def load_last_time_string
+    return "" unless File.exists?(state_path)
+    return File.read(state_path).to_s.strip
+  end
 
   def make_it_so
     @logger.info "Start of '#{@name}'"
 
     @tmp_storage_path = @storage.path_temp_for_desc("archive_#{@name}")
 
+    time_string = load_last_time_string
+
     # get from last
-    list = get_image_list(time_string = "")
+    list = get_image_list(time_string)
     download_images_for_list(list)
 
     sleep @sleep_between_lists
@@ -124,11 +156,17 @@ class WebcamDownloader::ArchiveDownloader
     last_time_string = list.last if list.size > 0
 
     while last_time_string != ""
+      @logger.info "Success #{@success_count}, already #{@already_count}, failed #{@failed_count}"
+      @logger.info "Total size #{@total_size / (1024 ** 2)} MB"
+
       list = get_image_list(time_string = "")
       download_images_for_list(list)
 
       last_time_string = ""
-      last_time_string = list.last if list.size > 0
+      if list.size > 0
+        last_time_string = list.last
+        store_last_time_string(list.last)
+      end
 
       sleep @sleep_between_lists
     end
