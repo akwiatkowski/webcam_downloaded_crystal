@@ -19,7 +19,6 @@ class WebcamDownloader::Storage
 
   def prepare_directories
     (%w(tmp data pix www) + [File.join("www", "pix")]).each do |path|
-      puts path
       Dir.mkdir_p(path) unless Dir.exists?(path)
     end
   end
@@ -55,6 +54,11 @@ class WebcamDownloader::Storage
   def path_store_for_desc(desc)
     return File.join("pix", @monthly_prefix, desc, "#{desc}_#{Time.now.epoch}.jpg")
   end
+
+  def path_store_for_archived_name(name, time)
+    return File.join("pix", "archived", WebcamDownloader::Helper.monthly_prefix(time), name, "#{name}_#{time.epoch}.jpg")
+  end
+
 
   def move(from_path, to_path)
     `mv #{from_path} #{to_path}`

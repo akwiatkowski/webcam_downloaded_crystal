@@ -10,12 +10,12 @@ class WebcamDownloader::StatsWriter
 
   def make_it_so
     result = String.build do |node|
-               node.json_array do |array|
-                 @webcam_array.webcams.each do |webcam|
-                   array << webcam.json_data
-                 end
-               end
-             end
+      node.json_array do |array|
+        @webcam_array.webcams.each do |webcam|
+          array << webcam.json_data
+        end
+      end
+    end
 
     File.write(@path, result)
     @logger.debug("Stats JSON saved")

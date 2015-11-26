@@ -7,33 +7,33 @@ class WebcamDownloader::Downloader
     @logger.level = Logger::DEBUG
     @logger.level = Logger::INFO
     @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
-                          io << severity[0] << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
-                          io << severity.rjust(5) << ": " << message
-                        end
+      io << severity[0] << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
+      io << severity.rjust(5) << ": " << message
+    end
 
     @processor = Processor.new(
-                   @logger
-                 )
+      @logger
+    )
     @storage = Storage.new(
-                 @logger,
-                 @processor
-               )
+      @logger,
+      @processor
+    )
     @wget_proxy = WgetProxy.new(
-                    @logger
-                  )
+      @logger
+    )
 
     @webcam_array = WebcamArray.new(
-                      @storage,
-                      @wget_proxy,
-                      @logger
-                    )
+      @storage,
+      @wget_proxy,
+      @logger
+    )
 
     @stats_writer = StatsWriter.new(
-                      @logger,
-                      @webcam_array
-                    )
+      @logger,
+      @webcam_array
+    )
 
-    @storage.setup                
+    @storage.setup
   end
 
   getter :webcam_array, :logger, :storage, :wget_proxy
