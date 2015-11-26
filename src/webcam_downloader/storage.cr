@@ -19,6 +19,7 @@ class WebcamDownloader::Storage
 
   def prepare_directories
     (%w(tmp data pix www) + [File.join("www", "pix")]).each do |path|
+      puts path
       Dir.mkdir_p(path) unless Dir.exists?(path)
     end
   end
