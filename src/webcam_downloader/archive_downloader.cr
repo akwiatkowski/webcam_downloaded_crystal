@@ -39,7 +39,7 @@ class WebcamDownloader::ArchiveDownloader
     @already_count = 0
     @failed_count = 0
     @last_failed_count = 0
-    @last_failed_stop_max = 10 # if more than 20 image download errors stop script
+    @last_failed_stop_max = 4 # if more than 20 image download errors stop script
     @success_count = 0
     @enabled = true
     @total_size = UInt64.new(0)
