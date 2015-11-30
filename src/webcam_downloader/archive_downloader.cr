@@ -38,7 +38,10 @@ class WebcamDownloader::ArchiveDownloader
 
     @already_count = 0
     @failed_count = 0
+    @last_failed_count = 0
+    @last_failed_stop_max = 10 # if more than 20 image download errors stop script
     @success_count = 0
+    @enabled = true
     @total_size = UInt64.new(0)
 
     @format = "hd"
@@ -46,6 +49,22 @@ class WebcamDownloader::ArchiveDownloader
 
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
   getter :logger
+
+  def watchdog_mark_failure
+    if @last_failed_count >= @last_failed_stop_max
+      @logger.error("Too many image failures #{@last_failed_count}, stopping")
+      @enabled = false
+    else
+      @last_failed_count += 1
+    end
+
+    @failed_count += 1
+  end
+
+  def watchdog_mark_success
+    @last_failed_count = 0
+    @success_count += 1
+  end
 
   def url(time_string = "")
     return "#{@server_host}#{@server_list_path}?wc=#{@name}&img=#{time_string}"
@@ -90,6 +109,8 @@ class WebcamDownloader::ArchiveDownloader
   end
 
   def download_image(time_string)
+    return false unless @enabled
+
     time = convert_time_string_to_time(time_string)
 
     store_path = @storage.path_store_for_archived_name(@name, time)
@@ -110,22 +131,24 @@ class WebcamDownloader::ArchiveDownloader
       size = File.size(store_path)
       @logger.info "Image downloaded '#{time_string.to_s.colorize(:green)}', size #{size.to_s.colorize(:blue)}"
       if size == 0
-        @failed_count += 1
+        watchdog_mark_failure
         File.delete(store_path)
       else
-        @success_count += 1
+        watchdog_mark_success
         @total_size += size
       end
 
       sleep @sleep_between_image_download
       return true
     else
-      @failed_count += 1
+      watchdog_mark_failure
       sleep @sleep_between_image_download
       return false
     end
 
   end
+
+
 
   def download_images_for_list(list)
     list.each do |time_string|
@@ -164,8 +187,8 @@ class WebcamDownloader::ArchiveDownloader
     @last_time_string = ""
     @last_time_string = list.last if list.size > 0
 
-    while @last_time_string != ""
-      @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}"
+    while @enabled && @last_time_string != ""
+      @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
       @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:purple)} MB"
 
       list = get_image_list(@last_time_string)
