@@ -33,8 +33,8 @@ class WebcamDownloader::ArchiveDownloader
     @last_time_string = ""
     @last_time = Time.now
 
-    @sleep_between_lists = 2
-    @sleep_between_image_download = 3
+    @sleep_between_lists = 4
+    @sleep_between_image_download = 5
 
     @already_count = 0
     @failed_count = 0
@@ -44,7 +44,11 @@ class WebcamDownloader::ArchiveDownloader
     @enabled = true
     @total_size = UInt64.new(0)
 
-    @format = "hd"
+    @format = "hd" # full hd, not all photos available
+
+    @format = "hu" # full few MP image
+    @resize = true
+    @resize_jpeg_quality = 85
   end
 
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
@@ -136,6 +140,11 @@ class WebcamDownloader::ArchiveDownloader
       else
         watchdog_mark_success
         @total_size += size
+
+        if @resize
+          resize_image(store_path)
+        end
+
       end
 
       sleep @sleep_between_image_download
@@ -148,7 +157,25 @@ class WebcamDownloader::ArchiveDownloader
 
   end
 
+  def resize_image(stored)
+    tmp_store_path = stored + "_resized"
+    @processor.resize(stored, tmp_store_path, @resize_jpeg_quality)
 
+    if File.exists?(tmp_store_path)
+      command_rm = "rm \"#{stored}\""
+      command_mv = "mv \"#{tmp_store_path}\" \"#{stored}\""
+
+      size_pre = File.size(stored)
+      size_post = File.size(tmp_store_path)
+      reduction = size_pre / size_post
+
+      @logger.info("Resize image #{stored}, size from #{size_pre.to_s.colorize(:green)} to #{size_post.to_s.colorize(:blue)}")
+      @logger.info("Reduction #{reduction.to_s.colorize(:blue)}")
+
+      `#{command_rm}`
+      `#{command_mv}`
+    end
+  end
 
   def download_images_for_list(list)
     list.each do |time_string|

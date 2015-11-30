@@ -7,7 +7,7 @@ require "../src/webcam_downloader"
 # kronplatz - !!!
 # gantkofel - !!!
 # meran - !!!
-# ankogel-sued - !!!
+# NOW ankogel-sued - !!!
 # schareck - !
 # gletscher-sued - !
 # obervellach - !!
@@ -36,5 +36,5 @@ w.logger.level = Logger::DEBUG
 w.server_host = "http://www.foto-webcam.eu/"
 w.server_webcam_path = "webcam/"
 w.server_list_path = "webcam/include/list.php"
-w.name = "ankogel-sued"
+w.name = "lienz"
 w.make_it_so
