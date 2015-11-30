@@ -1,4 +1,5 @@
 require "logger"
+require "colorize"
 
 class WebcamDownloader::ArchiveDownloader
   def initialize
@@ -38,12 +39,13 @@ class WebcamDownloader::ArchiveDownloader
     @already_count = 0
     @failed_count = 0
     @success_count = 0
-    @total_size = 0
+    @total_size = UInt64.new(0)
 
     @format = "hd"
   end
 
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
+  getter :logger
 
   def url(time_string = "")
     return "#{@server_host}#{@server_list_path}?wc=#{@name}&img=#{time_string}"
@@ -57,7 +59,7 @@ class WebcamDownloader::ArchiveDownloader
   end
 
   def get_image_list(time_string = "")
-    @logger.info "Get images for '#{time_string}'"
+    @logger.info "Get images for '#{time_string.to_s.colorize(:green)}'"
 
     u = url(time_string)
     @wget_proxy.download_url(u, @tmp_storage_path)
@@ -101,11 +103,12 @@ class WebcamDownloader::ArchiveDownloader
     Dir.mkdir_p(store_dir_path) unless Dir.exists?(store_dir_path)
     # download image
     u = image_url(time_string)
+    @logger.debug("Download image '#{u.to_s.colorize(:red)}'")
     @wget_proxy.download_url(u, store_path)
 
     if File.exists?(store_path)
       size = File.size(store_path)
-      @logger.info "Image downloaded '#{time_string}', size #{size}"
+      @logger.info "Image downloaded '#{time_string.to_s.colorize(:green)}', size #{size.to_s.colorize(:blue)}"
       if size == 0
         @failed_count += 1
         File.delete(store_path)
@@ -146,7 +149,7 @@ class WebcamDownloader::ArchiveDownloader
   end
 
   def make_it_so
-    @logger.info "Start of '#{@name}'"
+    @logger.info "Start of '#{@name.to_s.colorize(:yellow)}'"
 
     @tmp_storage_path = @storage.path_temp_for_desc("archive_#{@name}")
 
@@ -162,8 +165,8 @@ class WebcamDownloader::ArchiveDownloader
     @last_time_string = list.last if list.size > 0
 
     while @last_time_string != ""
-      @logger.info "Success #{@success_count}, already #{@already_count}, failed #{@failed_count}"
-      @logger.info "Total size #{@total_size / (1024 ** 2)} MB"
+      @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}"
+      @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:purple)} MB"
 
       list = get_image_list(@last_time_string)
       download_images_for_list(list)
