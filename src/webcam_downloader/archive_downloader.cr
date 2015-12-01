@@ -218,7 +218,7 @@ class WebcamDownloader::ArchiveDownloader
 
     while @enabled && @last_time_string != ""
       @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
-      @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:purple)} MB"
+      @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:violet)} MB"
 
       list = get_image_list(@last_time_string)
       download_images_for_list(list)
