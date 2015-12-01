@@ -37,4 +37,16 @@ w.server_host = "http://www.foto-webcam.eu/"
 w.server_webcam_path = "webcam/"
 w.server_list_path = "webcam/include/list.php"
 w.name = "lienz"
+
+# downloading hd
+w.format = "hd"
+w.resize = false
+
+# downloading full
+w.format = "fu"
+w.sleep_between_lists = 10
+w.sleep_between_image_download = 10
+w.resize = true
+w.resize_jpeg_quality = 85
+
 w.make_it_so

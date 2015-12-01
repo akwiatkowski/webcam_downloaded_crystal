@@ -52,7 +52,9 @@ class WebcamDownloader::ArchiveDownloader
   end
 
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
+  property :sleep_between_lists, :sleep_between_image_download, :format, :resize, :resize_jpeg_quality
   getter :logger
+
 
   def watchdog_mark_failure
     if @last_failed_count >= @last_failed_stop_max
