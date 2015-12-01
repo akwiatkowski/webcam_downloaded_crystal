@@ -45,6 +45,8 @@ w.name = "ankogel-sued"
 if download_hd == true
   w.format = "hd"
   w.resize = false
+  w.sleep_between_lists = 4
+  w.sleep_between_image_download = 5
 end
 
 # downloading full
