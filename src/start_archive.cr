@@ -26,11 +26,17 @@ require "../src/webcam_downloader"
 # wallberg - !!!
 # http://www.foto.webcam/suedtirol/vinschgau/mals/hotel-watles/12/webcam?date=2015/11/26/0240
 # http://www.foto.webcam/suedtirol/groeden/st-christina/dorfhotel-beludei/6/webcam?date=2015/11/26/2040
+# konkordiahuette
+# tuxertal - !/!!
+# arber-ost - !!
+# http://www.foto.webcam/suedtirol/pustertal/niederdorf/haeuslerhof/13/webcam?date=2015/08/01/1040
+# http://www.foto.webcam/suedtirol/meran-und-umgebung/meran/hotel-kueglerhof/3/webcam?date=2015/01/17/0710
 
-# NOW ankogel-sued - !!!
+# NOW flattach
 
 # DONE
 # DONE full 2015 - lienz - !!!
+# DONE nearly full ankogel-sued - !!!
 
 download_hd = true
 
@@ -39,7 +45,7 @@ w.logger.level = Logger::DEBUG
 w.server_host = "http://www.foto-webcam.eu/"
 w.server_webcam_path = "webcam/"
 w.server_list_path = "webcam/include/list.php"
-w.name = "ankogel-sued"
+w.name = "flattach"
 
 # downloading hd
 if download_hd == true
