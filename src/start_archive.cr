@@ -31,6 +31,15 @@ require "../src/webcam_downloader"
 # arber-ost - !!
 # http://www.foto.webcam/suedtirol/pustertal/niederdorf/haeuslerhof/13/webcam?date=2015/08/01/1040
 # http://www.foto.webcam/suedtirol/meran-und-umgebung/meran/hotel-kueglerhof/3/webcam?date=2015/01/17/0710
+# burgstalleralm
+# konkordiahuette
+# sonnblick
+# tuxertal
+# funtenseetauern
+# hochries
+# pendling-west
+# hoherkasten
+# http://www.foto-webcam.org/webcam/wallberg/#/2015/11/27/2110/bestof
 
 # NOW flattach
 

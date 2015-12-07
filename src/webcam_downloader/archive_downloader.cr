@@ -2,8 +2,8 @@ require "logger"
 require "colorize"
 
 class WebcamDownloader::ArchiveDownloader
-  def initialize
-    @logger = Logger.new(STDOUT)
+  def initialize(logger = Logger.new(STDOUT))
+    @logger = logger
     @logger.level = Logger::DEBUG
     @logger.level = Logger::INFO
     @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
@@ -33,7 +33,11 @@ class WebcamDownloader::ArchiveDownloader
     @last_time_string = ""
     @last_time = Time.now
 
+    @list = Array(String).new
+    @list_index = 0
+
     @sleep_between_lists = 4
+    @sleep_between_lists_inter = 0.8
     @sleep_between_image_download = 5
 
     @already_count = 0
@@ -42,6 +46,7 @@ class WebcamDownloader::ArchiveDownloader
     @last_failed_stop_max = 4 # if more than 20 image download errors stop script
     @success_count = 0
     @enabled = true
+    @first_run = true
     @total_size = UInt64.new(0)
 
     @format = "hd" # full hd, not all photos available
@@ -53,7 +58,7 @@ class WebcamDownloader::ArchiveDownloader
 
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
   property :sleep_between_lists, :sleep_between_image_download, :format, :resize, :resize_jpeg_quality
-  getter :logger
+  property :logger
 
 
   def watchdog_mark_failure
@@ -83,10 +88,10 @@ class WebcamDownloader::ArchiveDownloader
     return "#{@server_host}#{@server_webcam_path}#{@name}/#{time_string}_#{format}.jpg"
   end
 
-  def get_image_list(time_string = "")
-    @logger.info "Get images for '#{time_string.to_s.colorize(:green)}'"
+  def get_image_list
+    @logger.info "Get images for '#{@last_time_string.to_s.colorize(:green)}'"
 
-    u = url(time_string)
+    u = url(@last_time_string)
     @wget_proxy.download_url(u, @tmp_storage_path)
     s = File.read(@tmp_storage_path)
 
@@ -99,7 +104,8 @@ class WebcamDownloader::ArchiveDownloader
       end
     end
 
-    return a.reverse
+    @list = a.reverse
+    return @list
   end
 
   def convert_time_string_to_time(time_string)
@@ -182,6 +188,7 @@ class WebcamDownloader::ArchiveDownloader
   def download_images_for_list(list)
     list.each do |time_string|
       download_image(time_string)
+      sleep @sleep_between_lists_inter
     end
   end
 
@@ -197,36 +204,50 @@ class WebcamDownloader::ArchiveDownloader
 
   def load_last_time_string
     return "" unless File.exists?(state_path)
-    return File.read(state_path).to_s.strip
+    t = File.read(state_path).to_s.strip
+    @logger.info "Last time of '#{@name.to_s.colorize(:yellow)}' loaded '#{t}'"
+    return t
+  end
+
+  def setup_pre_run
+    @logger.info "Prerun of '#{@name.to_s.colorize(:yellow)}'"
+    @tmp_storage_path = @storage.path_temp_for_desc("archive_#{@name}")
+    @last_time_string = load_last_time_string
+  end
+
+  def next_time_string_to_download
+    if @list_index >= @list.size
+      return ""
+    else
+      t = @list[@list_index]
+      @list_index += 1
+      return t
+    end
+  end
+
+  def images_to_download_count
+    return @list.size - @list_index
+  end
+
+  def post_download
+    @last_time_string = ""
+    if @list.size > 0
+      @last_time_string = @list.last
+      store_last_time_string(@last_time_string)
+    end
+    @first_run = false
   end
 
   def make_it_so
-    @logger.info "Start of '#{@name.to_s.colorize(:yellow)}'"
+    setup_pre_run
 
-    @tmp_storage_path = @storage.path_temp_for_desc("archive_#{@name}")
-
-    @last_time_string = load_last_time_string
-
-    # get from last
-    list = get_image_list(@last_time_string)
-    download_images_for_list(list)
-
-    sleep @sleep_between_lists
-
-    @last_time_string = ""
-    @last_time_string = list.last if list.size > 0
-
-    while @enabled && @last_time_string != ""
+    while @enabled && (@first_run || @last_time_string != "")
       @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
       @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:magenta)} MB"
 
-      list = get_image_list(@last_time_string)
-      download_images_for_list(list)
-
-      if list.size > 0
-        @last_time_string = list.last
-        store_last_time_string(@last_time_string)
-      end
+      get_image_list
+      download_images_for_list
+      post_download
 
       sleep @sleep_between_lists
     end
