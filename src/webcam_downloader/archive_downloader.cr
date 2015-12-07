@@ -185,8 +185,8 @@ class WebcamDownloader::ArchiveDownloader
     end
   end
 
-  def download_images_for_list(list)
-    list.each do |time_string|
+  def download_images_for_list
+    @list.each do |time_string|
       download_image(time_string)
       sleep @sleep_between_lists_inter
     end
