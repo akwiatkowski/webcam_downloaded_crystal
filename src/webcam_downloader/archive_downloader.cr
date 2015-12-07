@@ -39,6 +39,7 @@ class WebcamDownloader::ArchiveDownloader
     @sleep_between_lists = 4
     @sleep_between_lists_inter = 0.8
     @sleep_between_image_download = 5
+    @sleep_failed_list = 5
 
     @already_count = 0
     @failed_count = 0
@@ -59,6 +60,7 @@ class WebcamDownloader::ArchiveDownloader
   property :server_host, :server_list_path, :server_webcam_path, :name, :server_path
   property :sleep_between_lists, :sleep_between_image_download, :format, :resize, :resize_jpeg_quality
   property :logger
+  getter :list
 
 
   def watchdog_mark_failure
@@ -94,6 +96,11 @@ class WebcamDownloader::ArchiveDownloader
     u = url(@last_time_string)
     @wget_proxy.download_url(u, @tmp_storage_path)
     s = File.read(@tmp_storage_path)
+
+    if s.size == 0
+      @logger.error("Blank file list downloaded")
+      return @list
+    end
 
     d = JSON.parse(s) as Hash(String, JSON::Type)
     a = Array(String).new
@@ -246,6 +253,13 @@ class WebcamDownloader::ArchiveDownloader
       @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:magenta)} MB"
 
       get_image_list
+
+      if @first_run && @list.size == 0
+        # blank response
+        sleep @sleep_failed_list
+        get_image_list
+      end
+
       download_images_for_list
       post_download
 

@@ -13,6 +13,8 @@ class WebcamDownloader::ArchiveManager
 
     @sleep_between_lists = 4
     @sleep_between_image_download = 5
+    @sleep_slow_failed_list = 1
+
     @format = "hd" # full hd, not all photos available
     @resize = false
 
@@ -57,6 +59,13 @@ class WebcamDownloader::ArchiveManager
   def get_all_lists
     @downloaders.each do |d|
       d.get_image_list
+    end
+
+    @downloaders.each do |d|
+      if d.list.size == 0
+        sleep @sleep_slow_failed_list
+        d.get_image_list
+      end
     end
 
     @logger.info("Manager - got all lists")
