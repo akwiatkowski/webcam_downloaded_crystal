@@ -31,7 +31,7 @@ class WebcamDownloader::ArchiveDownloader
 
     @tmp_storage_path = ""
     @last_time_string = ""
-    @last_time = Time.now
+    @latest_time = Time.now
 
     @list = Array(String).new
     @list_index = 0
@@ -47,6 +47,7 @@ class WebcamDownloader::ArchiveDownloader
     @last_failed_stop_max = 4 # if more than 20 image download errors stop script
     @success_count = 0
     @enabled = true
+    @latest_enabled = true
     @first_run = true
     @total_size = UInt64.new(0)
 
@@ -90,10 +91,10 @@ class WebcamDownloader::ArchiveDownloader
     return "#{@server_host}#{@server_webcam_path}#{@name}/#{time_string}_#{format}.jpg"
   end
 
-  def get_image_list
-    @logger.info "Get images for '#{@last_time_string.to_s.colorize(:green)}'"
+  def get_image_list(ts = @last_time_string)
+    @logger.info "Get images for '#{@name.to_s.colorize(:yellow)}' time '#{ts.to_s.colorize(:green)}'"
 
-    u = url(@last_time_string)
+    u = url(ts)
     @wget_proxy.download_url(u, @tmp_storage_path)
     s = File.read(@tmp_storage_path)
 
@@ -148,7 +149,7 @@ class WebcamDownloader::ArchiveDownloader
 
     if File.exists?(store_path)
       size = File.size(store_path)
-      @logger.info "Image downloaded '#{time_string.to_s.colorize(:green)}', size #{size.to_s.colorize(:blue)}"
+      @logger.info "Image downloaded '#{@name.to_s.colorize(:yellow)}' time '#{time_string.to_s.colorize(:green)}', size #{(size / 1024).to_s.colorize(:light_blue)} kB"
       if size == 0
         watchdog_mark_failure
         File.delete(store_path)
@@ -161,6 +162,10 @@ class WebcamDownloader::ArchiveDownloader
         end
 
       end
+
+      # mark which image was downloaded as latest
+      # it will be used to periodically download latest images
+      @latest_time = time if @latest_time < time
 
       sleep @sleep_between_image_download
       return true
@@ -243,30 +248,55 @@ class WebcamDownloader::ArchiveDownloader
       store_last_time_string(@last_time_string)
     end
     @first_run = false
+
+    @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
+    @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:magenta)} MB"
+  end
+
+  # from time to time download latest to update collection
+  def download_latest
+    temp_time_string = @last_time_string
+    @last_time_string = ""
+
+    @logger.info "Downloading latest"
+
+    execute_loop
+
+    @last_time_string = temp_time_string
+  end
+
+  def is_latest_needed?
+    if Time.now - @latest_time > Time::Span.new(6, 0, 0)
+      return true
+    else
+      return false
+    end
+  end
+
+  def execute_loop
+    get_image_list
+
+    if @first_run && @list.size == 0
+      # blank response
+      sleep @sleep_failed_list
+      get_image_list
+    end
+
+    download_images_for_list
+    post_download
+
+    sleep @sleep_between_lists
   end
 
   def make_it_so
     setup_pre_run
-
     while @enabled && (@first_run || @last_time_string != "")
-      @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
-      @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:magenta)} MB"
+      execute_loop
 
-      get_image_list
-
-      if @first_run && @list.size == 0
-        # blank response
-        sleep @sleep_failed_list
-        get_image_list
+      if is_latest_needed? && @latest_enabled
+        download_latest
       end
-
-      download_images_for_list
-      post_download
-
-      sleep @sleep_between_lists
     end
-
   end
-
 
 end

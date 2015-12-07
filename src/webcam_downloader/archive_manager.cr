@@ -28,7 +28,7 @@ class WebcamDownloader::ArchiveManager
   def setup
     @names.each do |name|
       w = WebcamDownloader::ArchiveDownloader.new(@logger)
-      w.logger.level = Logger::DEBUG
+      w.logger.level = @logger.level
       w.server_host = "http://www.foto-webcam.eu/"
       w.server_webcam_path = "webcam/"
       w.server_list_path = "webcam/include/list.php"
@@ -51,6 +51,7 @@ class WebcamDownloader::ArchiveManager
       @logger.info("Manager - loop start for #{@downloaders.size} downloaders")
       get_all_lists
       get_all_images
+      get_latest_images
 
       sleep @sleep_between_lists
     end
@@ -77,9 +78,15 @@ class WebcamDownloader::ArchiveManager
       count += d.images_to_download_count
     end
 
-    @logger.info("Manager - images to download #{count.to_s.colorize(:green)}")
+    @logger.info("Manager - images to download #{count.to_s.colorize(:green)}, time #{(@sleep_between_image_download * count / 60).to_s.colorize(:light_blue)} min")
 
     return count
+  end
+
+  def get_latest_images
+    @downloaders.each do |d|
+      d.download_latest if d.is_latest_needed?
+    end
   end
 
   def get_all_images

@@ -1,7 +1,7 @@
 require "../src/webcam_downloader"
 
 w = WebcamDownloader::ArchiveManager.new
-w.logger.level = Logger::DEBUG
+w.logger.level = Logger::INFO
 w.names = [
   "flattach",
   "dobratsch",
@@ -28,7 +28,7 @@ w.names = [
 
 w.format = "hd"
 w.resize = false
-w.sleep_between_lists = 10
+w.sleep_between_lists = 8
 w.sleep_between_image_download = 4
 
 w.setup
