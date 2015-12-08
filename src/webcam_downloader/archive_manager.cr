@@ -78,7 +78,7 @@ class WebcamDownloader::ArchiveManager
       count += d.images_to_download_count
     end
 
-    @logger.info("Manager - images to download #{count.to_s.colorize(:green)}, time #{(@sleep_between_image_download * count / 60).to_s.colorize(:light_blue)} min")
+    @logger.info("Manager - images to download #{count.to_s.colorize(:green)}, time > #{(@sleep_between_image_download.to_f * count.to_f / 60.0).ceil.to_s.colorize(:light_blue)} min")
 
     return count
   end

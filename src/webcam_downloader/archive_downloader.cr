@@ -4,8 +4,6 @@ require "colorize"
 class WebcamDownloader::ArchiveDownloader
   def initialize(logger = Logger.new(STDOUT))
     @logger = logger
-    @logger.level = Logger::DEBUG
-    @logger.level = Logger::INFO
     @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
       io << severity[0] << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
       io << severity.rjust(5) << ": " << message
@@ -248,6 +246,7 @@ class WebcamDownloader::ArchiveDownloader
       store_last_time_string(@last_time_string)
     end
     @first_run = false
+    @list_index = 0
 
     @logger.info "Success #{@success_count.to_s.colorize(:blue)}, already #{@already_count.to_s.colorize(:green)}, failed #{@failed_count.to_s.colorize(:red)}, last failed #{@last_failed_count.to_s.colorize(:red)}"
     @logger.info "Total size #{(@total_size / (1024 ** 2)).to_s.colorize(:magenta)} MB"
