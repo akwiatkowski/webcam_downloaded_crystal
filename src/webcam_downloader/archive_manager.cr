@@ -1,4 +1,5 @@
 require "logger"
+require "colorize"
 require "./archive_downloader"
 
 class WebcamDownloader::ArchiveManager
@@ -48,7 +49,7 @@ class WebcamDownloader::ArchiveManager
 
   def make_it_so
     while true
-      @logger.info("Manager - loop start for #{@downloaders.size} downloaders")
+      @logger.info("Manager - loop start for #{@downloaders.size.to_s.colorize(:light_blue)} downloaders")
       get_all_lists
       get_all_images
       get_latest_images

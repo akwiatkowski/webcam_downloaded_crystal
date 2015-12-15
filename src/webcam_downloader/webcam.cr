@@ -1,3 +1,6 @@
+require "logger"
+require "colorize"
+
 class WebcamDownloader::Webcam
   def initialize(_hash, _logger, _storage, _wget_proxy)
     @hash = _hash as Hash(YAML::Type, YAML::Type)
@@ -81,13 +84,13 @@ class WebcamDownloader::Webcam
 
     s = Time.epoch(time).to_s(_schema as String)
 
-    @logger.info("#{log_name} generated url #{s}")
+    @logger.info("#{log_name} generated url #{s.to_s.colorize(:yellow)}")
 
     return s
   end
 
   def log_name
-    "#{index} - #{desc}"
+    "#{index} - #{desc.to_s.colorize(:green)}"
   end
 
   def download
@@ -99,7 +102,7 @@ class WebcamDownloader::Webcam
     if t <= 0
       return true
     else
-      @logger.info("#{log_name} need to wait more #{t} seconds")
+      @logger.info("#{log_name} need to wait more #{t.to_s.colorize(:blue)} seconds")
       return false
     end
   end
@@ -122,7 +125,7 @@ class WebcamDownloader::Webcam
 
     if @storage.processor.is_valid_image?( _download_temp_path )
       # image was downloaded
-      @logger.info("#{log_name} image downloaded, size #{Helper.size_to_human( File.size(_download_temp_path) )}")
+      @logger.info("#{log_name} image downloaded, size #{Helper.size_to_human( File.size(_download_temp_path) ).to_s.colorize(:light_blue)}")
       @stats["download_total_size_unprocessed"] += File.size( _download_temp_path )
 
       if resize
@@ -158,7 +161,7 @@ class WebcamDownloader::Webcam
 
       # mark image was downloaded now
       @last_download_at = Time.now
-      @logger.info("#{log_name} image is finished, size #{Helper.size_to_human( File.size(_path_store) )}")
+      @logger.info("#{log_name} image is finished, size #{Helper.size_to_human( File.size(_path_store) ).to_s.colorize(:light_green)}")
     end
 
   end

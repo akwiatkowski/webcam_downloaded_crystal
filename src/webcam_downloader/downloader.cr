@@ -1,5 +1,6 @@
 require "yaml"
 require "logger"
+require "colorize"
 
 class WebcamDownloader::Downloader
   def initialize

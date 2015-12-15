@@ -64,7 +64,7 @@ class WebcamDownloader::ArchiveDownloader
 
   def watchdog_mark_failure
     if @last_failed_count >= @last_failed_stop_max
-      @logger.error("Too many image failures #{@last_failed_count}, stopping")
+      @logger.error("Too many image failures #{@last_failed_count.to_s.colorize(:red)}, stopping")
       @enabled = false
     else
       @last_failed_count += 1

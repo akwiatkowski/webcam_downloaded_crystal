@@ -1,3 +1,6 @@
+require "logger"
+require "colorize"
+
 class WebcamDownloader::Storage
   def initialize(_logger, _processor)
     @logger = _logger
@@ -39,7 +42,7 @@ class WebcamDownloader::Storage
 
     @monthly_prefix = mp
 
-    @logger.debug("Storage prepared monthly directories for #{mp}")
+    @logger.debug("Storage prepared monthly directories for #{mp.to_s.colorize(:green)}")
   end
 
   # paths for webcam

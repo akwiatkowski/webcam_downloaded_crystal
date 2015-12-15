@@ -1,4 +1,5 @@
 require "logger"
+require "colorize"
 
 class WebcamDownloader::WebcamArray
   def initialize(_storage, _wget_proxy, _logger, _options = {} of String => (UInt32 | Float64))
@@ -43,12 +44,12 @@ class WebcamDownloader::WebcamArray
         while [true] != pool.map { |f| f.completed? as Bool }.uniq
           # some were not finished
           waiting_for_count = pool.map { |f| f.running? as Bool }.select { |r| r }.size
-          @logger.debug("Array is waiting for #{waiting_for_count} webcams")
+          @logger.debug("Array is waiting for #{waiting_for_count.to_s.colorize(:yellow)} webcams")
           sleep 1
         end
         # clear pool
         pool = [] of Concurrent::Future(Webcam)
-        @logger.info("Array: current pool is clear")
+        @logger.info("Array: current pool is clear, total #{@webcams.size.to_s.colorize(:light_yellow)}")
       end
     end
   end
@@ -59,7 +60,7 @@ class WebcamDownloader::WebcamArray
       load_config_file(path)
     end
 
-    @logger.debug "Array all config loaded - #{@webcams.size} webcams"
+    @logger.debug "Array all config loaded - #{@webcams.size.to_s.colorize(:blue)} webcams"
   end
 
   # load one config YAML file and add Webcam object
@@ -78,7 +79,7 @@ class WebcamDownloader::WebcamArray
       end
     end
 
-    @logger.debug "Array config load: #{path}"
+    @logger.debug "Array config load: #{path.to_s.colorize(:blue)}"
   end
 
   def copy_descs_to_storage
