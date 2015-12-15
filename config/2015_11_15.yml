@@ -1,0 +1,11 @@
+- :interval: 180
+  :desc: rovaniemi_ski
+  :url: http://www.rovaniemi.fi/roikpiwebcamimages/skicenter.jpg
+
+- :interval: 180
+  :desc: rovaniemi_kamera2
+  :url: http://www.rovaniemi.fi/roikpiwebcamimages/Kamera2_00001.jpg
+
+- :interval: 180
+  :desc: rovaniemi_kamera3
+  :url: http://www.rovaniemi.fi/roikpiwebcamimages/Kamera3_00001.jpg
