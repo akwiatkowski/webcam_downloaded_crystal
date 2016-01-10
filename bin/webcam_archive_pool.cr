@@ -35,5 +35,4 @@ w.sleep_between_image_download = 3
 w.setup
 w.make_it_so
 
-
 sleep 0.1

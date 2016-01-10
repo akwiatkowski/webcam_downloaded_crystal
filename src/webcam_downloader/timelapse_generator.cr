@@ -70,7 +70,7 @@ class WebcamDownloader::TimelapseGenerator
 
   def scan_for_months
     @months_path = months_path
-    @month_dirs = Dir.entries( @months_path )
+    @month_dirs = Dir.entries(@months_path)
     @month_dirs -= SPECIAL_DIRS
 
     @month_dirs.each do |mp|
@@ -98,7 +98,7 @@ class WebcamDownloader::TimelapseGenerator
       # path
       full_path = File.join([path, i])
 
-      #size
+      # size
       size = File.size(full_path)
 
       @images << {time, full_path, size}
@@ -106,7 +106,7 @@ class WebcamDownloader::TimelapseGenerator
   end
 
   def sort_images
-    @images = @images.sort do |a,b|
+    @images = @images.sort do |a, b|
       a[0] <=> b[0]
     end
   end

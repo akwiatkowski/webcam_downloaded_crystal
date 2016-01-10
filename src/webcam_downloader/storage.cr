@@ -62,7 +62,6 @@ class WebcamDownloader::Storage
     return File.join("pix", "archived", WebcamDownloader::Helper.monthly_prefix(time), name, "#{name}_#{time.epoch}.jpg")
   end
 
-
   def move(from_path, to_path)
     `mv #{from_path} #{to_path}`
   end

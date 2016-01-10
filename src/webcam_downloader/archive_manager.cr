@@ -44,7 +44,6 @@ class WebcamDownloader::ArchiveManager
 
       @downloaders << w
     end
-
   end
 
   def make_it_so
@@ -109,5 +108,4 @@ class WebcamDownloader::ArchiveManager
 
     @logger.debug("Manager - post download finished")
   end
-
 end

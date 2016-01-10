@@ -61,7 +61,6 @@ class WebcamDownloader::ArchiveDownloader
   property :logger
   getter :list
 
-
   def watchdog_mark_failure
     if @last_failed_count >= @last_failed_stop_max
       @logger.error("Too many image failures #{@last_failed_count.to_s.colorize(:red)}, stopping")
@@ -106,7 +105,7 @@ class WebcamDownloader::ArchiveDownloader
     if d["history"]
       # puts .class
       d["history"].each do |t|
-       a << t.to_s
+        a << t.to_s
       end
     end
 
@@ -159,7 +158,6 @@ class WebcamDownloader::ArchiveDownloader
         if @resize
           resize_image(store_path)
         end
-
       end
 
       # mark which image was downloaded as latest
@@ -173,7 +171,6 @@ class WebcamDownloader::ArchiveDownloader
       sleep @sleep_between_image_download
       return false
     end
-
   end
 
   def resize_image(stored)
@@ -298,5 +295,4 @@ class WebcamDownloader::ArchiveDownloader
       end
     end
   end
-
 end
