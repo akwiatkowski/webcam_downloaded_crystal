@@ -101,16 +101,17 @@ class WebcamDownloader::ArchiveDownloader
       return @list
     end
 
-    d = JSON.parse(s) as Hash(String, JSON::Type)
+    d = JSON.parse(s) as JSON::Any
     a = Array(String).new
-    if d.has_key?("history")
+    if d["history"]
       # puts .class
-      (d["history"] as Array(JSON::Type)).each do |t|
+      d["history"].each do |t|
        a << t.to_s
       end
     end
 
     @list = a.reverse
+
     return @list
   end
 
