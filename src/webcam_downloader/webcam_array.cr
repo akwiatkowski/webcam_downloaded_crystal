@@ -66,12 +66,11 @@ class WebcamDownloader::WebcamArray
   # load one config YAML file and add Webcam object
   def load_config_file(path)
     s = File.read(path)
-    data = YAML.load(s) as Array
+    data = YAML.parse(s)
 
-    data.each do |h|
+    data.each do |hash|
       # check if definition has "desc"
-      hash = h as Hash(YAML::Type, YAML::Type)
-      if hash.has_key?(":desc")
+      if hash[":desc"]?
         webcam = WebcamDownloader::Webcam.new(hash, @logger, @storage, @wget_proxy)
         webcam.index = @last_index
         @last_index += 1

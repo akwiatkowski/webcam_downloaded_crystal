@@ -3,7 +3,7 @@ require "colorize"
 
 class WebcamDownloader::Webcam
   def initialize(_hash, _logger, _storage, _wget_proxy)
-    @hash = _hash as Hash(YAML::Type, YAML::Type)
+    @hash = _hash.as_h
     @logger = _logger
     @storage = _storage
     @wget_proxy = _wget_proxy
