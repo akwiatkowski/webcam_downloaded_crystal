@@ -1,11 +1,3 @@
-- :url_schema: "http://www.foto-webcam.eu/webcam/lienz/%Y/%m/%d/%H%M_hu.jpg"
-  :time_modulo: 600 # every 10 minutes
-  :referer: "http://www.foto-webcam.eu/webcam/lienz/"
-  :interval: 300
-  :resize: true
-  :desc: germany_lienz
-  :use_in_timelapse: false
-
 - :interval: 300
   :desc: austria_bad_gastein
   :url_schema: "http://panodata1.panomax.at/cams/23/%Y/%m/%d//%H-%M-00_default.jpg"
@@ -20,4 +12,3 @@
   :time_offset: -3540
   :interval: 300
   :desc: sudety_kopa
-    
