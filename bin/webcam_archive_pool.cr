@@ -25,7 +25,35 @@ w.names = [
   "wank",
   "karwendel",
   "norderney",
-]
+
+  # new, much
+  "winklern",
+  "laax",
+
+  # quite
+  "lorenzalm",
+  "freiwandeck",
+  "meran",
+  "konkordiahuette",
+  "hochkoenig",
+  "sonnblick",
+
+  # less interesting
+  "falkert",
+  "kaiserburg",
+  "rangersdorf",
+  "burgstalleralm",
+  "heiligenblut",
+  "kals",
+  "hochkar",
+  "sonnblickbasis",
+  "pendling-ost",
+  "sonnenbichl",
+  "tegelberg",
+  "schroecken",
+  "wien"
+
+].uniq
 
 w.format = "hd"
 w.resize = false
