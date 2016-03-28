@@ -1,15 +1,15 @@
-- :url: http://www.mountainwebcams.com/Qx4F8e21/netcam2.jpg
-  :interval: 200
-  :desc: usa_lake_arrowhead
-  :resize: true
-  :jpg_quality_offset: 4
-  :lat: 34.256389
-  :lon: -117.184444
-  :use_in_timelapse: true
+# - :url: http://www.mountainwebcams.com/Qx4F8e21/netcam2.jpg
+#   :interval: 200
+#   :desc: usa_lake_arrowhead
+#   :resize: true
+#   :jpg_quality_offset: 4
+#   :lat: 34.256389
+#   :lon: -117.184444
+#   :use_in_timelapse: true
 
-- :url: http://www.stevenspass.com/Stevens/SiteAssets/_ftp/webcam/stevenspass.jpg
-  :interval: 300
-  :desc: usa_stevens1
+# - :url: http://www.stevenspass.com/Stevens/SiteAssets/_ftp/webcam/stevenspass.jpg
+#   :interval: 300
+#   :desc: usa_stevens1
 
 - :url: http://www.nps.gov/webcams-mora/mountain.jpg
   :interval: 300

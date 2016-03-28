@@ -67,21 +67,21 @@
   :lon: 18.4475
   :use_in_timelapse: false
 
-- :url: http://www.kompas.pl/kamerki/szczniec_widok000M.jpg
-  :interval: 110
-  :desc: sudety_szczeliniec2
-  :lat: 50.9
-  :lon: 15.333333
-  :use_in_timelapse: false
+# - :url: http://www.kompas.pl/kamerki/szczniec_widok000M.jpg
+#   :interval: 110
+#   :desc: sudety_szczeliniec2
+#   :lat: 50.9
+#   :lon: 15.333333
+#   :use_in_timelapse: false
 
   # http://kamery.hydronet.cz/vrbata/
 
-- :url: http://www.kompas.pl/kamerki/pstrka_widok000M.jpg
-  :interval: 110
-  :desc: sudety_szczeliniec1
-  :lat: 50.9
-  :lon: 15.333333
-  :use_in_timelapse: false
+# - :url: http://www.kompas.pl/kamerki/pstrka_widok000M.jpg
+#   :interval: 110
+#   :desc: sudety_szczeliniec1
+#   :lat: 50.9
+#   :lon: 15.333333
+#   :use_in_timelapse: false
 
 - :resize: false
   :url: http://www.tanvald.cz/data/webkamery/tanvald.jpg
@@ -170,11 +170,11 @@
   :lon: 18.973611
   :use_in_timelapse: false
 
-- :resize: false
-  :url: http://bartanet.cz/~foto/kamera/spindlerovka.jpg
-  :interval: 240
-  :desc: chech_spindlerovka2
-  :use_in_timelapse: false
+# - :resize: false
+#   :url: http://bartanet.cz/~foto/kamera/spindlerovka.jpg
+#   :interval: 240
+#   :desc: chech_spindlerovka2
+#   :use_in_timelapse: false
 
 - :resize: false
   :url: http://www.kamera.karpacz.pl/lodowiec.jpg
@@ -190,17 +190,17 @@
   :desc: poland_jelenia_cieplice
   :use_in_timelapse: false
 
-- :resize: false
-  :url: http://webcam.box3.pl/new_file.php?camera=zachelmie
-  :interval: 180
-  :desc: poland_jelenia_zachelmie
-  :use_in_timelapse: false
+# - :resize: false
+#   :url: http://webcam.box3.pl/new_file.php?camera=zachelmie
+#   :interval: 180
+#   :desc: poland_jelenia_zachelmie
+#   :use_in_timelapse: false
 
-- :resize: false
-  :url: http://www.infoo.net/sniezka_karpacz.jpg
-  :interval: 180
-  :desc: poland_karpacz_sniezka
-  :use_in_timelapse: false
+# - :resize: false
+#   :url: http://www.infoo.net/sniezka_karpacz.jpg
+#   :interval: 180
+#   :desc: poland_karpacz_sniezka
+#   :use_in_timelapse: false
 
 - :resize: true
   :jpg_quality_offset: 5
@@ -231,27 +231,27 @@
   # foggy
   :use_in_timelapse: false
 
-- :resize: false
-  :url: http://www.karpacz.eu/cam_pliki/cam2.php
-  :interval: 120
-  :desc: karpacz2
-  :lat: 50.288333
-  :lon: 18.973611
-  :use_in_timelapse: false
+# - :resize: false
+#   :url: http://www.karpacz.eu/cam_pliki/cam2.php
+#   :interval: 120
+#   :desc: karpacz2
+#   :lat: 50.288333
+#   :lon: 18.973611
+#   :use_in_timelapse: false
 
-- :resize: false
-  :url: http://sokolowsko.pl/soko-cam.jpg
-  :interval: 150
-  :desc: sokolowsko
-  :lat: 50.288333
-  :lon: 18.973611
-  :use_in_timelapse: false
+# - :resize: false
+#   :url: http://sokolowsko.pl/soko-cam.jpg
+#   :interval: 150
+#   :desc: sokolowsko
+#   :lat: 50.288333
+#   :lon: 18.973611
+#   :use_in_timelapse: false
 
-- :interval: 120
-  :desc: karpacz_3_maja
-  :url: http://www.karpacz.eu/camera.php
-  :resize: false
-  :use_in_timelapse: false
+# - :interval: 120
+#   :desc: karpacz_3_maja
+#   :url: http://www.karpacz.eu/camera.php
+#   :resize: false
+#   :use_in_timelapse: false
 
 - :interval: 60
   :desc: kowary_deptak

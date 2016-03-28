@@ -190,9 +190,9 @@
   :lon: 18.973611
   :use_in_timelapse: false
 
-- :url: http://www.pieninyportal.com/images/stories/webcamera/pieninyportal.jpg
-  :interval: 120
-  :desc: trzy_korony
+# - :url: http://www.pieninyportal.com/images/stories/webcamera/pieninyportal.jpg
+#   :interval: 120
+#   :desc: trzy_korony
 
 - :url: http://www.niedzica.pl/uploads/webcam/niedzica7000M.jpg
   :interval: 240

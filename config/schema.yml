@@ -1,14 +1,14 @@
-- :interval: 300
-  :desc: austria_bad_gastein
-  :url_schema: "http://panodata1.panomax.at/cams/23/%Y/%m/%d//%H-%M-00_default.jpg"
-  :time_modulo: 600 # every 20 minutes
-  :time_offset: 0 # 12 minutes
-  :referer: "http://www.panomax.at/"
-  :resize: false
-  :use_in_timelapse: false
+# - :interval: 300
+#   :desc: austria_bad_gastein
+#   :url_schema: "http://panodata1.panomax.at/cams/23/%Y/%m/%d//%H-%M-00_default.jpg"
+#   :time_modulo: 600 # every 20 minutes
+#   :time_offset: 0 # 12 minutes
+#   :referer: "http://www.panomax.at/"
+#   :resize: false
+#   :use_in_timelapse: false
 
-- :url_schema: "http://webcams.tenet.net.pl/webcam_1/Snapshot-%Y%m%d-%H%M01.jpg"
-  :time_modulo: 1800 # every 10 minutes
-  :time_offset: -3540
-  :interval: 300
-  :desc: sudety_kopa
+# - :url_schema: "http://webcams.tenet.net.pl/webcam_1/Snapshot-%Y%m%d-%H%M01.jpg"
+#   :time_modulo: 1800 # every 10 minutes
+#   :time_offset: -3540
+#   :interval: 300
+#   :desc: sudety_kopa

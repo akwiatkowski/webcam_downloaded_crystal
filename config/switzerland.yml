@@ -1,10 +1,10 @@
-- :url: http://www.monopol-andermatt.ch/cam/webcam.jpg
-  :interval: 180
-  :desc: switz_andermatt
+# - :url: http://www.monopol-andermatt.ch/cam/webcam.jpg
+#   :interval: 180
+#   :desc: switz_andermatt
 
-- :url: http://camserver.z-online.ch/picture/ar6o_T141016_175501543.jpg
-  :interval: 180
-  :desc: switz_weishorn
+# - :url: http://camserver.z-online.ch/picture/ar6o_T141016_175501543.jpg
+#   :interval: 180
+#   :desc: switz_weishorn
 
 - :url: http://www.appenzell-ai.ch/appenzell_fotoold.jpg
   :interval: 200

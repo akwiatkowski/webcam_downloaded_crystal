@@ -9,12 +9,12 @@
   :use_in_timelapse: true
   :prior: 0
 
-- :interval: 120
-  :desc: italy_caorle_centro
-  :url: http://webcam.caorle.com/webcam-centro-storico/current.jpg
-  :lat: 41.897676
-  :lon: 12.495164
-  :use_in_timelapse: false
+# - :interval: 120
+#   :desc: italy_caorle_centro
+#   :url: http://webcam.caorle.com/webcam-centro-storico/current.jpg
+#   :lat: 41.897676
+#   :lon: 12.495164
+#   :use_in_timelapse: false
 
 - :interval: 220
   :desc: italy_lago

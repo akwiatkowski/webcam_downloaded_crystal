@@ -2,15 +2,15 @@
   :desc: austria_aflenz
   :url: http://www.aflenz-outdoorpark.at/webcam/webcam.jpg
 
-- :interval: 390
-  :resize: true
-  :desc: austria_silvretta1
-  :url: http://www.silvretta-montafon.at/webcam/image1_text.jpg
+# - :interval: 390
+#   :resize: true
+#   :desc: austria_silvretta1
+#   :url: http://www.silvretta-montafon.at/webcam/image1_text.jpg
 
-- :interval: 390
-  :resize: true
-  :desc: austria_silvretta2
-  :url: http://www.silvretta-montafon.at/webcam/image2_text.jpg
+# - :interval: 390
+#   :resize: true
+#   :desc: austria_silvretta2
+#   :url: http://www.silvretta-montafon.at/webcam/image2_text.jpg
 
 - :interval: 180
   :desc: saalfelden_hotel_Ritzenhof1

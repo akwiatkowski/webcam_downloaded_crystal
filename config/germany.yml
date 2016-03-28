@@ -44,14 +44,14 @@
   :resize: false
   :use_in_timelapse: false
 
-- :interval: 300
-  :desc: germany_walldurn1
-  :url: http://www.wallduern.de/webcam/wallduern.jpg
-  :resize: false
-  :use_in_timelapse: false
+# - :interval: 300
+#   :desc: germany_walldurn1
+#   :url: http://www.wallduern.de/webcam/wallduern.jpg
+#   :resize: false
+#   :use_in_timelapse: false
 
-- :interval: 300
-  :desc: germany_walldurn2
-  :url: http://www.wallduern.de/webcam/hauptstr.jpg
-  :resize: false
-  :use_in_timelapse: false
+# - :interval: 300
+#   :desc: germany_walldurn2
+#   :url: http://www.wallduern.de/webcam/hauptstr.jpg
+#   :resize: false
+#   :use_in_timelapse: false
