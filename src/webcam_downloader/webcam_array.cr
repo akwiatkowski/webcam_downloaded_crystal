@@ -68,6 +68,8 @@ class WebcamDownloader::WebcamArray
     s = File.read(path)
     data = YAML.parse(s)
 
+    return if data == nil
+
     data.each do |hash|
       # check if definition has "desc"
       if hash[":desc"]?
