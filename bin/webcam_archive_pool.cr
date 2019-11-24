@@ -51,8 +51,7 @@ w.names = [
   "sonnenbichl",
   "tegelberg",
   "schroecken",
-  "wien"
-
+  "wien",
 ].uniq
 
 w.format = "hd"
