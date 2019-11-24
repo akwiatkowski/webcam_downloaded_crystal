@@ -1,8 +1,9 @@
 require "../src/webcam_downloader"
 
 t = WebcamDownloader::TimelapseGenerator.new
-t.archived = true
-t.name = "lienz"
+t.archived = false
+t.name = "zakopianka"
+t.path = "/media/cdrom/backup/webcam_downloader/"
 
 t.mencoder_preset = "fhd"
 

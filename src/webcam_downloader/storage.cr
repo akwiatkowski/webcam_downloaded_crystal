@@ -2,7 +2,7 @@ require "logger"
 require "colorize"
 
 class WebcamDownloader::Storage
-  def initialize(_logger, _processor)
+  def initialize(_logger : Logger, _processor : WebcamDownloader::Processor)
     @logger = _logger
     @processor = _processor
 
@@ -55,11 +55,11 @@ class WebcamDownloader::Storage
   end
 
   def path_store_for_desc(desc)
-    return File.join("pix", @monthly_prefix, desc, "#{desc}_#{Time.now.epoch}.jpg")
+    return File.join("pix", @monthly_prefix, desc, "#{desc}_#{Time.now.to_unix}.jpg")
   end
 
   def path_store_for_archived_name(name, time)
-    return File.join("pix", "archived", WebcamDownloader::Helper.monthly_prefix(time), name, "#{name}_#{time.epoch}.jpg")
+    return File.join("pix", "archived", WebcamDownloader::Helper.monthly_prefix(time), name, "#{name}_#{time.to_unix}.jpg")
   end
 
   def move(from_path, to_path)

@@ -1,5 +1,5 @@
 class WebcamDownloader::WgetProxy
-  def initialize(_logger)
+  def initialize(_logger : Logger)
     @logger = _logger
     @cookie_path = File.join("data", "cookies.txt")
 

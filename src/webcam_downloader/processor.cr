@@ -1,7 +1,7 @@
-require "crypto/md5"
+require "digest/md5"
 
 class WebcamDownloader::Processor
-  def initialize(_logger)
+  def initialize(_logger : Logger)
     @logger = _logger
 
     @resolution = "1920x1080"

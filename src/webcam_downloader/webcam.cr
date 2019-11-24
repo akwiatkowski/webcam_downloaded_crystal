@@ -8,7 +8,7 @@ class WebcamDownloader::Webcam
     @storage = _storage
     @wget_proxy = _wget_proxy
 
-    @desc = @hash[":desc"] as String
+    @desc = @hash[":desc"].as(String)
 
     # resize params
     @resize = false
@@ -69,7 +69,7 @@ class WebcamDownloader::Webcam
     _time_offset = 0
     _time_offset = @hash[":time_offset"].to_s.to_i64 if @hash.has_key?(":time_offset")
 
-    time = Time.now.epoch if time.nil?
+    time = Time.now.to_unix if time.nil?
     time = time as Int64
 
     if _time_modulo != 0
@@ -82,7 +82,7 @@ class WebcamDownloader::Webcam
       time -= _time_modulo
     end
 
-    s = Time.epoch(time).to_s(_schema as String)
+    s = Time.unix(time).to_s(_schema as String)
 
     @logger.info("#{log_name} generated url #{s.to_s.colorize(:yellow)}")
 
@@ -98,7 +98,7 @@ class WebcamDownloader::Webcam
   end
 
   def download?
-    t = @last_download_at.epoch - Time.now.epoch + self.interval
+    t = @last_download_at.to_unix - Time.now.to_unix + self.interval
     if t <= 0
       return true
     else
@@ -173,8 +173,8 @@ class WebcamDownloader::Webcam
       "url" => url,
       "interval" => interval,
       "group" => group,
-      "last_download_at" => last_download_at.epoch,
-      "started_at" => started_at.epoch,
+      "last_download_at" => last_download_at.to_unix,
+      "started_at" => started_at.to_unix,
       "stats" => @stats
     }
   end

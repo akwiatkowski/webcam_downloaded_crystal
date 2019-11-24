@@ -100,7 +100,7 @@ class WebcamDownloader::ArchiveDownloader
       return @list
     end
 
-    d = JSON.parse(s) as JSON::Any
+    d = JSON.parse(s)
     a = Array(String).new
     if d["history"]
       # puts .class

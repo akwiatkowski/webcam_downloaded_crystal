@@ -7,8 +7,8 @@ class WebcamDownloader::TimelapseGenerator
     @logger.level = Logger::DEBUG
     @logger.level = Logger::INFO
     @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
-      io << severity[0] << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
-      io << severity.rjust(5) << ": " << message
+      io << severity.to_s << ", [" << datetime.to_s("%H:%M:%S.%L") << "] "
+      io << ": " << message
     end
 
     @wget_proxy = WgetProxy.new(
@@ -29,7 +29,7 @@ class WebcamDownloader::TimelapseGenerator
     @output_time = Time.now
 
     # time, path, size
-    @images = [] of Tuple(Time, String, Int64)
+    @images = [] of Tuple(Time, String, UInt64)
     @month_dirs = [] of String
     @months_path = ""
 
@@ -41,16 +41,22 @@ class WebcamDownloader::TimelapseGenerator
     @mencoder_height = 1080
     @mencoder_bitrate = 10000
     @mencoder_fps = 25
+    @mencoder_ratio = (@mencoder_width.to_f / @mencoder_height.to_f).as(Float64)
+    @mencoder_crop = false
 
     # -1 true aspect ratio
     # -2 fit into movie size, aspect not maintained
     @mencoder_aspect_ratio_type = -1
+
+    # you can create using files from external disk
+    @path = "."
   end
 
   SPECIAL_DIRS = [".", "..", "archived"]
 
   property :archived, :name
   property :mencoder_preset
+  property :path
 
   def is_archived?
     return @archived == true
@@ -62,9 +68,9 @@ class WebcamDownloader::TimelapseGenerator
 
   def months_path
     if is_archived?
-      return File.join(["pix", "archived"])
+      return File.join([@path, "pix", "archived"])
     else
-      return File.join(["pix"])
+      return File.join([@path, "pix"])
     end
   end
 
@@ -93,7 +99,7 @@ class WebcamDownloader::TimelapseGenerator
       # time
       match = i.scan(/(\d{5,20})/)
       t = match[0][1]
-      time = Time.epoch(t.to_i)
+      time = Time.unix(t.to_i)
 
       # path
       full_path = File.join([path, i])
@@ -111,18 +117,16 @@ class WebcamDownloader::TimelapseGenerator
     end
   end
 
-  def output_path(sufix)
-    return File.join("data", "timelapse_#{@name}_#{@output_time.epoch}#{sufix}")
+  def get_output_path(sufix) : String
+    return File.join(@path, "data", "timelapse_#{@name}_#{@output_time.to_unix}#{sufix}")
   end
 
   def write_list
-    output_path = output_path(".txt")
-    path_csv = output_path(".csv")
-    path_command = output_path(".sh")
+    output_path = get_output_path(".txt")
+    path_csv = get_output_path(".csv")
+    path_command = get_output_path(".sh")
 
     @output_path = output_path
-
-    puts @output_path
 
     f = File.new(output_path, "w")
     @images.each do |i|
@@ -132,7 +136,7 @@ class WebcamDownloader::TimelapseGenerator
 
     f = File.new(path_csv, "w")
     @images.each do |i|
-      f.puts "#{i[0].epoch}; '#{i[1]}'; #{i[2]}"
+      f.puts "#{i[0].to_unix}; '#{i[1]}'; #{i[2]}"
     end
     f.close
 
@@ -155,15 +159,13 @@ class WebcamDownloader::TimelapseGenerator
     end
 
     @mencoder_ratio = @mencoder_width.to_f / @mencoder_height.to_f
-    @output_avi = output_path(".avi")
+    @output_avi = get_output_path(".avi").as(String)
 
     if @mencoder_crop
       scale_crop_string = "-aspect #{@mencoder_ratio} -vf scale=#{@mencoder_aspect_ratio_type}:#{@mencoder_height},crop=#{@mencoder_width}:#{@mencoder_height} -sws 9 "
     else
       scale_crop_string = "-vf scale=#{@mencoder_aspect_ratio_type} -sws 9 "
     end
-
-    puts @output_path
 
     input_string = "\"mf://@#{@output_path}\" "
     fps_string = "-mf fps=#{@mencoder_fps} "
