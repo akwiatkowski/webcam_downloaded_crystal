@@ -26,7 +26,7 @@ class WebcamDownloader::TimelapseGenerator
 
     @archived = false
     @name = "sample"
-    @output_time = Time.now
+    @output_time = Time.local
 
     # time, path, size
     @images = [] of Tuple(Time, String, UInt64)
